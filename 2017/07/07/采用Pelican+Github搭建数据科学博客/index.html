@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="blog,git,pelican,python," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="心安即行 自在欢喜" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="前言在今年的个人计划中，想要搭建一个数据挖掘的平台，主要目的是，希望通过这件事能让自己对数据挖掘、机器学习的各种算法都很熟练，同时对搭建这样的平台框架有个基础的实践与认知。因此，就想在做这件事的时候能将自己趟过的坑记录整理下来，帮助自己从技术上提高。所以，首先得搭建一个自己的博客。虽然，目前网上有很多现成的博客系统，但是自己总觉得自定义的才是最炫酷的（其实并没有什么卵用），希望能一直坚持下来吧。">
+<meta name="keywords" content="blog,git,pelican,python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="采用Pelican+Github搭建数据科学博客">
+<meta property="og:url" content="http://joshua.github.io/2017/07/07/采用Pelican+Github搭建数据科学博客/index.html">
+<meta property="og:site_name" content="心安即行 自在欢喜">
+<meta property="og:description" content="前言在今年的个人计划中，想要搭建一个数据挖掘的平台，主要目的是，希望通过这件事能让自己对数据挖掘、机器学习的各种算法都很熟练，同时对搭建这样的平台框架有个基础的实践与认知。因此，就想在做这件事的时候能将自己趟过的坑记录整理下来，帮助自己从技术上提高。所以，首先得搭建一个自己的博客。虽然，目前网上有很多现成的博客系统，但是自己总觉得自定义的才是最炫酷的（其实并没有什么卵用），希望能一直坚持下来吧。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-07-28T03:09:48.175Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="采用Pelican+Github搭建数据科学博客">
+<meta name="twitter:description" content="前言在今年的个人计划中，想要搭建一个数据挖掘的平台，主要目的是，希望通过这件事能让自己对数据挖掘、机器学习的各种算法都很熟练，同时对搭建这样的平台框架有个基础的实践与认知。因此，就想在做这件事的时候能将自己趟过的坑记录整理下来，帮助自己从技术上提高。所以，首先得搭建一个自己的博客。虽然，目前网上有很多现成的博客系统，但是自己总觉得自定义的才是最炫酷的（其实并没有什么卵用），希望能一直坚持下来吧。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://joshua.github.io/2017/07/07/采用Pelican+Github搭建数据科学博客/"/>
+
+
+
+
+
+  <title>采用Pelican+Github搭建数据科学博客 | 心安即行 自在欢喜</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">心安即行 自在欢喜</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一生所求  爱与自由  你与温柔</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://joshua.github.io/2017/07/07/采用Pelican+Github搭建数据科学博客/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joshua Zou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心安即行 自在欢喜">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">采用Pelican+Github搭建数据科学博客</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-07T14:00:00+08:00">
+                2017-07-07
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-07-28T11:09:48+08:00">
+                2017-07-28
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Pelican/" itemprop="url" rel="index">
+                    <span itemprop="name">Pelican</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/07/07/采用Pelican+Github搭建数据科学博客/" class="leancloud_visitors" data-flag-title="采用Pelican+Github搭建数据科学博客">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在今年的个人计划中，想要搭建一个数据挖掘的平台，主要目的是，希望通过这件事能让自己对数据挖掘、机器学习的各种算法都很熟练，同时对搭建这样的平台框架有个基础的实践与认知。因此，就想在做这件事的时候能将自己趟过的坑记录整理下来，帮助自己从技术上提高。所以，首先得搭建一个自己的博客。虽然，目前网上有很多现成的博客系统，但是自己总觉得自定义的才是最炫酷的（其实并没有什么卵用），希望能一直坚持下来吧。本文采用 Python 的 Pelican 库搭建数据科学博客，并将 blog 挂在 Github Pages 上。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>Pelican是一套开源的使用Python编写的博客静态生成, 可以添加文章和和创建页面, 可以使用<code>MarkDown</code>，<code>reStructuredText</code>和<code>AsiiDoc</code>的格式来书写, 同时使用 Disqus评论系统, 支持 RSS和Atom输出, 插件, 主题, 代码高亮等功能, 采用Jajin2模板引擎, 可以很容易的更改模板，也可以很容易的把文章部署到 GitHub Pages 让别人阅读，欢迎进入我的<a href="https://zoujoshua.github.io" target="_blank" rel="external">Blog 站点</a>进行效果预览。</p>
+<ul>
+<li><strong>本地环境</strong></li>
+</ul>
+<p>windows 10 64位/ubuntu 16.04（笔记本为win10，台式机为ubuntu系统）</p>
+<p>Python 3.5</p>
+<ul>
+<li><strong>服务器环境</strong></li>
+</ul>
+<p>Github Pages（把 Github 的仓库当成服务器）</p>
+<ul>
+<li><strong>安装</strong></li>
+</ul>
+<blockquote>
+<p>安装Python</p>
+</blockquote>
+<p>如果你还没有安装 Python ，建议使用 Python 3.5，可以到官网<a href="http://www.python.org/" target="_blank" rel="external">安装</a>。</p>
+<blockquote>
+<p>安装Pelican</p>
+</blockquote>
+<p>建议在 Virtualenv （Python虚拟环境）下使用，创建并激活一个<a href="http://docs.python-guide.org/en/latest/dev/virtualenvs/" target="_blank" rel="external">虚拟环境</a>。</p>
+<pre><code>virtualenvs blogs         # 创建blog的虚拟环境
+cd blogs/scripts
+pip pelican
+activate                # 激活虚拟环境
+mkdir blog                 # 创建blog目录
+</code></pre><blockquote>
+<p>安装Markdown</p>
+</blockquote>
+<pre><code>cd blogs/scripts
+pip install markdown
+</code></pre><h2 id="博客框架"><a href="#博客框架" class="headerlink" title="博客框架"></a>博客框架</h2><p>通过初始化 Pelican 设置生成一个基本的博客框架，在创建的文件夹下运行 pelican-quickstart 时，会开始一个交互式博客安装过程。根据提示一步一步输入相应的配置项，对于不了解 pelican 框架或第一次安装的情况下，大多数问题直接点击<code>Enter</code>接受默认即可，后续可以在<code>pelicanconf.py</code>文件里更改配置，个人<code>pelicanconf.py</code><a href="https://github.com/ZouJoshua/pelican-blog/blob/master/pelicanconf.py" target="_blank" rel="external">详细配置</a>。</p>
+<pre><code>(blogs) D:\Python\envs\blogs\blog&gt;pelican-quickstart
+Welcome to pelican-quickstart v3.7.1.
+
+This script will help you create a new Pelican-based website.
+
+Please answer the following questions so this script can generate the files needed by Pelican.
+
+
+&gt; Where do you want to create your new web site? [.]
+&gt; What will be the title of this web site? Joshua&apos;s Blog
+&gt; Who will be the author of this web site? Joshua Zou
+&gt; What will be the default language of this web site? [Chinese (Simplified)]
+&gt; Do you want to specify a URL prefix? e.g., http://example.com   (Y/n) n
+&gt; Do you want to enable article pagination? (Y/n)
+&gt; How many articles per page do you want? [10]
+&gt; What is your time zone? [Europe/Paris] Asia/Shanghai
+&gt; Do you want to generate a Fabfile/Makefile to automate generation and publishing? (Y/n) 
+&gt; Do you want an auto-reload &amp; simpleHTTP script to assist with theme and site development? (Y/n)
+&gt; Do you want to upload your website using FTP? (y/N)
+&gt; Do you want to upload your website using SSH? (y/N)
+&gt; Do you want to upload your website using Dropbox? (y/N)
+&gt; Do you want to upload your website using S3? (y/N)
+&gt; Do you want to upload your website using Rackspace Cloud Files? (y/N)
+&gt; Do you want to upload your website using GitHub Pages? (y/N)
+Done. Your new project is available at D:\Python\envs\blogs\blog
+</code></pre><p>完成后会在相应的目录里生成如下基础框架结构及文件：</p>
+<pre><code>blog/
+├── content            # 存储Blog文件的目录，这个目录及子目录下的所有md和rst文件都会被转成html
+│   └── (pages)        # Blog文件，如*.md、*.ipynb等文件
+├── output             # 将blog文件转化成相应的html及相应文件的存放目录
+├── develop_server.sh  # pelican简易web服务器操作文件
+├── Makefile           # 方便管理博客的Make命令文件
+├── fabfile.py         # 与make类似，可用fab publish，fab server命令
+├── pelicanconf.py     # 本地开发时的配置文件
+└── publishconf.py     # 发布时的配置文件，可删除
+</code></pre><p>后续配置完整后，框架如下：</p>
+<pre><code>blog/
+|--content                  # 存储Blog文件的目录，这个目录及子目录下的所有md和rst文件都会被转成html
+|  └──(pages)                # Blog文件，如*.md、*.ipynb等文件
+|--output                  # 将blog文件转化成相应的html及相应文件的存放目录
+   └──.git                  # 执行git init之后，产生的远程仓库目录
+|  └──author              # 作者目录，存放pelicanconf.py中指定的Author文件
+|  └──category              # 分类目录，默认目录文件为misc，在编辑器中指定
+|  └──feeds              # 目录，pelicanconf.py中FEED_RSS指定的XML文件
+|  └──articles              # 目录，pelicanconf.py中ARTICLE_URL指定格式分类文件
+|  └──tag                  # 目录，存放编辑器开头所指定的Tag
+|  └──theme              # 目录，存放博客模板文件
+|  └──archives.html,authors.html,categories.html,index.html, tags.html
+|——pelican-plugins          # 目录，pelican插件
+|——pelican-themes          # 目录，pelican主题
+|——develop_server.sh      # pelican简易web服务器操作文件
+|——Makefile              # make 命令文件
+|——fabfile.py              # 与make类似，可用fab publish, fab server命令
+|——pelicanconf.py        # 本地开发时的配置文件
+|——publishconf.py        # 发布时的配置文件，可删除
+|——.gitignore             # 上传Git时排除指定类型文件
+</code></pre><h2 id="主题设置"><a href="#主题设置" class="headerlink" title="主题设置"></a>主题设置</h2><pre><code>git clone https://github.com/getpelican/pelican-themes.git # 获取全部主题
+cd pelican-themes
+pelican-themes -i BT3-Flat  #可换成你自己的theme
+</code></pre><p>因为个人喜好不同，我选择了 BT3-Flat 这个主题，但是由于原主题部分文件的问题，我自己修改了模板同时在<code>pelicanconf.py</code>文件中修改</p>
+<pre><code>THEME = &apos;./pelican-themes/BT3-Flat&apos;      # 设置的主题所在根目录下的路径
+</code></pre><h2 id="Plugin设置"><a href="#Plugin设置" class="headerlink" title="Plugin设置"></a>Plugin设置</h2><pre><code>git clone https://github.com/getpelican/pelican-plugins.git     # 将所支持的插件clone到本地，方便使用
+</code></pre><h4 id="Jupyter插件"><a href="#Jupyter插件" class="headerlink" title="Jupyter插件"></a>Jupyter插件</h4><p>Pelican默认情况下并不支持使用jupyter写博客 – 我们需要安装插件来进行支持。我们将把插件以git submodule的方式进行安装以便于管理。</p>
+<ul>
+<li><p>执行<code>git init</code>将当前文件夹初始化为一个git仓库。</p>
+</li>
+<li><p>创建<code>plugins</code>文件夹</p>
+</li>
+<li>在plugins文件夹中执行<code>git submodule add https://github.com/danielfrg/pelican-ipynb.git plugins/ipynb</code>来添加插件</li>
+</ul>
+<p>为了启动插件，我们需要修改<code>pelicanconf.py</code>并将以下内容添加到尾部：</p>
+<pre><code>MARKUP = (&apos;md&apos;, &apos;ipynb&apos;)
+PLUGIN_PATHS = [ &apos;./plugins&apos; ]  # 如果像原文直接PLUGIN_PATH = `./plugins`而不使用列表会报warning
+PLUGINS = [&apos;ipynb.markup&apos;]
+</code></pre><p>后期在本地测试时发现，加上Jupyter后，部分功能未显示，所以暂时没把Jupyter功能放入进去，所以目前文档只支持Markdown。</p>
+<h4 id="JIATHIS社会化分享功能"><a href="#JIATHIS社会化分享功能" class="headerlink" title="JIATHIS社会化分享功能"></a>JIATHIS社会化分享功能</h4><p>在<code>pelicanconf.py</code>文件中配置：</p>
+<pre><code>JIATHIS = True
+</code></pre><h4 id="Blog-Search"><a href="#Blog-Search" class="headerlink" title="Blog Search"></a>Blog Search</h4><p>在 <a href="https://swiftype.com/users/sign_up" target="_blank" rel="external">Swiftype</a>注册账号，得到输入自己的blog网址得到 API ，然后在 <code>pelicanconf.py</code> 中添加</p>
+<pre><code>SWIFTYPE = &apos;swiftype_api&apos;
+</code></pre><h4 id="Disqus第三方评论"><a href="#Disqus第三方评论" class="headerlink" title="Disqus第三方评论"></a>Disqus第三方评论</h4><p>开启个人博客的原因在于分享知识，分享就需要交流，评论模块当然少不了。第三方评论系统有很多，这里选用很流行的Disqus作为第三方评论系统，在Disqus上申请帐号，按照流程Disqus会分配给你站点的Shortname，记牢Shortname，如果忘了请进入admin/settings中查看。</p>
+<pre><code>Site name: {your git account name}.github.io
+Admin URL: {Shortname}.disqus.com
+</code></pre><p>然后同理，在<code>pelicanconf.py</code>添加：</p>
+<pre><code>DISQUS_SITENAME = Shortname
+</code></pre><p>由于DISQUS是国外的第三方应用，所以如果在国内想看到得FQ，后期争取支持国内友言之类的应用。</p>
+<h2 id="BlogRoll和Social设置"><a href="#BlogRoll和Social设置" class="headerlink" title="BlogRoll和Social设置"></a>BlogRoll和Social设置</h2><p>设置一些Blog链接，通过设置LINKS实现,可链接到别人的blog，或者自己的社交圈。在<code>pelicanconf.py</code>文件中配置：</p>
+<h4 id="Blogroll"><a href="#Blogroll" class="headerlink" title="Blogroll"></a>Blogroll</h4><pre><code>LINKS = ((&apos;Python.org&apos;, &apos;http://python.org/&apos;),
+     (&apos;Jinja2&apos;, &apos;http://jinja.pocoo.org/&apos;),)
+</code></pre><h4 id="Social-widget"><a href="#Social-widget" class="headerlink" title="Social widget"></a>Social widget</h4><pre><code>SOCIAL = ((&apos;weibo&apos;,&apos;http://www.weibo.com/233499456&apos;),
+      (&apos;envelope&apos;,&apos;mailto:joshua_zou@163.com&apos;),
+      (&apos;twitter&apos;, &apos;https://twitter.com/joshua_zou&apos;),
+      (&apos;facebook&apos;,&apos;https://www.facebook.com/joshua.zou.127&apos;),
+      (&apos;linkedin&apos;, &apos;https://www.linkedin.com/in/%E5%B8%85-%E9%82%B9-736390135/&apos;),
+      (&apos;github&apos;,&apos;https://github.com/ZouJoshua&apos;))
+</code></pre><h4 id="Feed设置"><a href="#Feed设置" class="headerlink" title="Feed设置"></a>Feed设置</h4><pre><code>FEED_RSS = &quot;feeds/all.rss.xml&quot; 
+CATEGORY_FEED_RSS=&quot;feeds/%s.rss.xml&quot;    #为分类添加Feed
+</code></pre><h2 id="撰写并发布第一篇blog"><a href="#撰写并发布第一篇blog" class="headerlink" title="撰写并发布第一篇blog"></a>撰写并发布第一篇blog</h2><p>插件配置等都完成后，就可以开始书写第一篇Blog了。</p>
+<ul>
+<li>创建一个Markdown文件，书写自己想记录的blog内容。</li>
+<li>在Markdown文件开头加入文档的头信息。</li>
+<li><p>把书写完成的Markdown文件复制到<code>content</code>目录下。</p>
+<pre><code>Title: Pelican搭建博客        # blog的标题
+Author: Joshua                 # blog作者名字
+Date: 2017/7/7 14:02:40      # blog发布日期
+Category: Pelican             # blog分类
+Tags: pelican，python，blogs # blog的标签
+Slug: pelican-blog             # blog在服务器上的路径，是文档的唯一标识，生成html时直接用这个值做html的文件名，个人采用的是当前的时间戳 
+Summary: My first post,read it to find out.  # blog的摘要
+</code></pre></li>
+</ul>
+<h4 id="将完成的-Markdown-生成-HTML"><a href="#将完成的-Markdown-生成-HTML" class="headerlink" title="将完成的 Markdown 生成 HTML"></a>将完成的 Markdown 生成 HTML</h4><p>在blog目录下运行命令。</p>
+<pre><code>pelican content                # 将content目录下的markdown文件生成html文件，输出到output文件里
+cd output
+python -m http.server        # 启动本地服务器预览blog
+</code></pre><p>在浏览器里访问 <code>localhost:8000</code> 来预览你的博客</p>
+<h2 id="发布博客站点"><a href="#发布博客站点" class="headerlink" title="发布博客站点"></a>发布博客站点</h2><p>三种方法：</p>
+<ul>
+<li><p><strong>Pelican命令</strong></p>
+<pre><code>pelican content -s publishconf.py
+</code></pre></li>
+<li><p><strong>Fabric</strong></p>
+<pre><code>pip install fabric
+fab build
+fab regenerate
+fab serve
+fab publish
+</code></pre></li>
+<li><p><strong>Make</strong></p>
+<pre><code>make html
+make regenerate
+make serve
+make devserver
+./develop_server.sh stop
+</code></pre><p>make 命令不是 Windows 系统自带的dos命令，需要安装，<a href="http://www.equation.com/servlet/equation.cmd?fa=make" target="_blank" rel="external">点此下载</a>，根据自己电脑选择32位或64位。安装完成后，须将安装路径添加到系统环境变量。</p>
+</li>
+</ul>
+<p>个人常选用 pelican 命令及 make 命令组合将新生成的 html 文件发布到 Github Pages 。</p>
+<h4 id="GitHub-Pages的创建和-Git-本地仓库配置"><a href="#GitHub-Pages的创建和-Git-本地仓库配置" class="headerlink" title="GitHub Pages的创建和 Git 本地仓库配置"></a>GitHub Pages的创建和 Git 本地仓库配置</h4><p>要将 blog 部署到 Github 上，必须在本地建立一个 Git 仓库，同时必须确保在 Github server 端有远程仓库，名字一般为 <code>username.github.io</code> 。</p>
+<p>GitHub Pages 是 GitHub 的一项功能，允许你快速部署静态网站，让所有人都可以通过特定 URL 访问。为了完成它的配置，我们需要：</p>
+<ul>
+<li>注册一个 GitHub 帐号，如果你还没有的话。</li>
+<li>创建一个叫 username.github.io 的仓库，这里 username 是你的 GitHub 用户名。<a href="https://help.github.com/articles/create-a-repo/" target="_blank" rel="external">这里</a>有更详细的说明。</li>
+</ul>
+<p>本部分 Git 本地仓库的配置，<a href="https://zoujoshua.github.io/articles/1500367116/" target="_blank" rel="external">可参考此博文</a>。</p>
+<p>创建一个叫做 <code>.gitignore</code> 的文件，并添加入这个<a href="https://github.com/github/gitignore/blob/master/Python.gitignore" target="_blank" rel="external">文件</a>的内容。最终我们将会把文件提交到 Git ，<code>.gitignore</code>将会排除指定类型的文件。</p>
+<pre><code>cd output
+git init         # 产生一个.git文件夹
+git remote add origin https://github.com/****/****.github.io.git    #将远程仓库配置到本地
+git add .
+git commit -m &quot;commit blog&quot;
+git push -u origin master
+</code></pre><p>对于后期的更新，如果需要修改远程仓库，可以选用下面命令之一，先将远程仓库配置到本地，然后进入本地远程仓库目录进行修改，最终提交。</p>
+<pre><code>git clone https://github.com/****/****.github.io.git        #将远程仓库克隆到本地
+cd xxx(clone到本地的仓库路径）
+git rm -rf xxx                         # 删除文件夹
+git commit -m &quot;Delete some files.&quot;  # 提交修改
+git push origin xxx                    # 将修改提交到远程仓库的分支或主支
+</code></pre><h4 id="设置一键上传部署到-Github"><a href="#设置一键上传部署到-Github" class="headerlink" title="设置一键上传部署到 Github"></a>设置一键上传部署到 Github</h4><p>打开根目录下的Makefile文件，修改以下三个地方：</p>
+<pre><code>OUTPUTDIR=$(BASEDIR)/output/    #本地博客仓库路径
+ publish:    
+ $(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS)    #可修改OUTPUTDIR,发布的blog站点的输出路径
+ github: publish    
+ cd OUTPUTDIR ; git add . ;  git commit -am &apos;your comments&apos; ; git push
+</code></pre><p>设置完后，以后写完文章就可以通过在blog根目录下执行<code>make github</code>进行一键部署了。</p>
+<p>可在Makefile文件中增加如下命令，有新文章要发布时可用 <code>make upload</code>一键更新到 Github 上。</p>
+<pre><code>upload:
+    cd $(OUTPUTDIR) &amp;&amp; git add -A &amp;&amp; git commit -am &quot;update blog&quot; &amp;&amp; git push origin master
+</code></pre><p>其实，命令文章的更新上传本质还是用 Git 命令的，只不过 make 命令可以将 Git 命令整合后一键操作，自然比一个一个命令去上传更新来的快。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>在博客搭建的过程中，趟过的一些坑。</p>
+<ol>
+<li>因本人关注数据挖掘、数据分析、算法方面的内容，所以希望用Jupyter Notebook 及 Markdown 搭建一个数据科学博客，但是所选用的这个主题对Jupyter Notebook的插件支持并不好，同时用两种文件方式的时候，整个主题的部分功能显示不全，但不影响总体使用，对这个小瑕疵并不感冒的可以将 Jupyter 插件加入，但是本人有些轻度完美主义，所以暂时先选择Markdown来写。</li>
+<li>对于BT3-Flat原主题模板文件，出现部分错误，在此基础上进行改进，同时在主题模板文件中加入JIATHIS社会化分享功能所必须的 <code>css</code> 文件和 <code>js</code> 文件，使得主题支持社会化分享功能。</li>
+<li>对于DISQUS第三方评论插件的显示问题。由于DISQUS是国外的，在国内浏览的话会被Q的，如果可以FQ，是可以使用的。</li>
+<li>由于个人不太懂css响应式布局，所以在手机端显示会有一些问题，稍后研究完再进行修改。</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  
+    <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+      <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+      <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+        <span>赏</span>
+      </button>
+      <div id="QR" style="display: none;">
+        
+          <div id="wechat" style="display: inline-block">
+            <img id="wechat_qr" src="/images/wechat-reward-image.jpg" alt="Joshua Zou WeChat Pay"/>
+            <p>微信打赏</p>
+          </div>
+        
+        
+          <div id="alipay" style="display: inline-block">
+            <img id="alipay_qr" src="/images/alipay-reward-image.jpg" alt="Joshua Zou Alipay"/>
+            <p>支付宝打赏</p>
+          </div>
+        
+      </div>
+    </div>
+  
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      Joshua Zou
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://joshua.github.io/2017/07/07/采用Pelican+Github搭建数据科学博客/" title="采用Pelican+Github搭建数据科学博客">http://joshua.github.io/2017/07/07/采用Pelican+Github搭建数据科学博客/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/blog/" rel="tag"># blog</a>
+          
+            <a href="/tags/git/" rel="tag"># git</a>
+          
+            <a href="/tags/pelican/" rel="tag"># pelican</a>
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/11/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/17/将本地项目上传到Github/" rel="prev" title="将本地项目上传到Github">
+                将本地项目上传到Github <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Joshua Zou" />
+          <p class="site-author-name" itemprop="name">Joshua Zou</p>
+           
+              <p class="site-description motion-element" itemprop="description">数据科学、数据挖掘分析博客</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+            <a title="收藏到书签，偶尔Relax一下!" rel="alternate" class="mw-harlem_shake_slow wobble shake" href='javascript:(
+    /*
+     * Copyright (C) 2015 Rocko (rocko.xyz) <rocko.zxp@gmail.com>
+     *
+     * Licensed under the Apache License, Version 2.0 (the "License");
+     * you may not use this file except in compliance with the License.
+     
+     * Unless required by applicable law or agreed to in writing, software
+     * distributed under the License is distributed on an "AS IS" BASIS,
+     * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     * See the License for the specific language governing permissions and
+     * limitations under the License.
+     */
+    function go() {
+    
+      var songs = [
+          "http://otr5y24lm.bkt.clouddn.com/music/blog/Josh%20Vietti%20-%20Where%20Is%20the%20Love.mp3", 
+          "http://otr5y24lm.bkt.clouddn.com/music/blog/TRON%20-%20%E4%B8%80%E7%94%9F%E6%89%80%E7%88%B1%EF%BC%88Cover%20%E5%8D%A2%E5%86%A0%E5%BB%B7%EF%BC%89.mp3",
+          "http://otr5y24lm.bkt.clouddn.com/music/blog/Bobby%20Tinsley%20-%20Missing%20You.mp3",    
+          "http://otr5y24lm.bkt.clouddn.com/music/blog/%E9%9F%A9%E7%BA%A2%20-%20%E4%B8%80%E4%B8%AA%E4%BA%BA.mp3"
+      ];
+ 
+      function S() {
+          var e = document.getElementById("audio_element_id");
+          if(e != null){
+              var index = parseInt(e.getAttribute("curSongIndex"));
+              if(index > songs.length - 2) {
+                  index = 0;
+              } else {
+                  index++;
+              }
+              e.setAttribute("curSongIndex", index);
+          }
+          e.src = i;
+          e.play()
+      }
+      function initAudioEle() {
+          var e = document.getElementById("audio_element_id");
+          if(e === null){
+            e = document.createElement("audio");
+            e.setAttribute("curSongIndex", 0);
+            e.id = "audio_element_id";
+            e.loop = false;
+            e.bgcolor = 0;
+            e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+            document.body.appendChild(e);
+            e.addEventListener("ended", function() {
+              go();
+            }, true);
+          }        
+      }
+    
+      initAudioEle();
+      var curSongIndex = parseInt(document.getElementById("audio_element_id").getAttribute("curSongIndex"));
+      var i = songs[curSongIndex];
+      S();
+    })()'>
+    <i class="fa fa-music"></i> 听音乐</a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ZouJoshua" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/joshua_zou" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.weibo.com/233499456" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/joshua-89-74" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-user-circle"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://weichangit.github.io/" title="WC" target="_blank">WC</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境"><span class="nav-number"></span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#博客框架"><span class="nav-number"></span> <span class="nav-text">博客框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主题设置"><span class="nav-number"></span> <span class="nav-text">主题设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Plugin设置"><span class="nav-number"></span> <span class="nav-text">Plugin设置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Jupyter插件"><span class="nav-number">0.1.</span> <span class="nav-text">Jupyter插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JIATHIS社会化分享功能"><span class="nav-number">0.2.</span> <span class="nav-text">JIATHIS社会化分享功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Blog-Search"><span class="nav-number">0.3.</span> <span class="nav-text">Blog Search</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Disqus第三方评论"><span class="nav-number">0.4.</span> <span class="nav-text">Disqus第三方评论</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BlogRoll和Social设置"><span class="nav-number"></span> <span class="nav-text">BlogRoll和Social设置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Blogroll"><span class="nav-number">0.1.</span> <span class="nav-text">Blogroll</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Social-widget"><span class="nav-number">0.2.</span> <span class="nav-text">Social widget</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Feed设置"><span class="nav-number">0.3.</span> <span class="nav-text">Feed设置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#撰写并发布第一篇blog"><span class="nav-number"></span> <span class="nav-text">撰写并发布第一篇blog</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将完成的-Markdown-生成-HTML"><span class="nav-number">0.1.</span> <span class="nav-text">将完成的 Markdown 生成 HTML</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布博客站点"><span class="nav-number"></span> <span class="nav-text">发布博客站点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GitHub-Pages的创建和-Git-本地仓库配置"><span class="nav-number">0.1.</span> <span class="nav-text">GitHub Pages的创建和 Git 本地仓库配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置一键上传部署到-Github"><span class="nav-number">0.2.</span> <span class="nav-text">设置一键上传部署到 Github</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number"></span> <span class="nav-text">问题</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joshua Zou
+
+  &nbsp;&nbsp;|&nbsp;&nbsp;<span><a href="/sitemap.xml">Google网站地图</a></span>
+  &nbsp;&nbsp;|&nbsp;&nbsp;<span><a href="/baidusitemap.xml">百度网站地图</a></span>
+  
+  </span>
+</div>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">本站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">本站总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2140064"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("AmwsuqodJDC9SKKxvA3mn2ap-gzGzoHsz", "zvAVQxr1bFWp6DoG8f5hOosl");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <script type="text/javascript" src="/js/src/particle.js" count="50" zindex="-2" opacity="1" color="0,104,183"></script>
+  <!-- 听音乐摇晃 -->
+  <link href="http://s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css" rel="stylesheet" type="text/css">
+</body>
+</html>
