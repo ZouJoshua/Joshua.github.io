@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://joshuazou.cn/"/>
-  <updated>2017-07-31T01:32:29.246Z</updated>
+  <updated>2017-07-31T03:12:59.269Z</updated>
   <id>http://joshuazou.cn/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://joshuazou.cn/2017/07/25/Hexo%20+%20Github%20%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/"/>
     <id>http://joshuazou.cn/2017/07/25/Hexo + Github 搭建静态博客/</id>
     <published>2017-07-25T02:00:00.000Z</published>
-    <updated>2017-07-31T01:32:29.246Z</updated>
+    <updated>2017-07-31T03:12:59.269Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p><strong>前言</strong></p>
@@ -279,7 +279,7 @@
 </li>
 </ul>
 <p>我们在百度里面搜索site:joshuazou.cn，发现没有我们的博客并没有被百度收录，也就是说你的博客别人可能会看不到，下面来解决这个问题：</p>
-<p>进入<a href="http://zhanzhang.baidu.com/linksubmit/url" target="_blank" rel="external">链接提交</a>，然后<a href="http://zhanzhang.baidu.com/site/index" target="_blank" rel="external">验证网站所有权</a>，选择文件验证，下载<code>baidu_verify_IIJFGFbbEX.html</code>文件到<code>source/</code>目录下面，修改<code>站点配置文件</code>。</p>
+<p>进入<a href="http://zhanzhang.baidu.com/linksubmit/url" target="_blank" rel="external">链接提交</a>，然后<a href="http://zhanzhang.baidu.com/site/index" target="_blank" rel="external">验证网站所有权</a>，选择文件验证，下载<code>baidu_verify_qzE3XIJ4hj.html</code>文件到<code>source/</code>目录下面，修改<code>站点配置文件</code>。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">skip_render: </div><div class="line">  - README.md</div><div class="line">  - baidu_verify_qzE3XIJ4hj.html</div></pre></td></tr></table></figure>
 <p>按照说明完成验证，在百度站长平台里面的站点管理里面看到是否验证成功。</p>
 <p>上面进行步骤成功之后，进入站点信息-&gt;网页抓取-&gt;链接提交-&gt;详情，按照说明进行设置。<br>完成后等一段时间，在百度里面搜索site:joshuazou.cn，有记录说明是被收录了。</p>
