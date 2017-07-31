@@ -95,13 +95,13 @@
 
 
 
-<meta name="description" content="前言将自己新建的本地项目上传到 Github ，包括本地 Git 仓库设置及远程仓库 Github 设置。本次操作需要用到管理工具Git，点击下载。">
+<meta name="description" content="前言 将自己新建的本地项目上传到 Github ，包括本地 Git 仓库设置及远程仓库 Github 设置。本次操作需要用到管理工具Git，点击下载。">
 <meta name="keywords" content="blog,git,linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="将本地项目上传到Github">
 <meta property="og:url" content="http://joshuazou.cn/2017/07/17/将本地项目上传到Github/index.html">
 <meta property="og:site_name" content="心安即行 自在欢喜">
-<meta property="og:description" content="前言将自己新建的本地项目上传到 Github ，包括本地 Git 仓库设置及远程仓库 Github 设置。本次操作需要用到管理工具Git，点击下载。">
+<meta property="og:description" content="前言 将自己新建的本地项目上传到 Github ，包括本地 Git 仓库设置及远程仓库 Github 设置。本次操作需要用到管理工具Git，点击下载。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.imgur.com/IL1rdhx.png">
 <meta property="og:image" content="https://i.imgur.com/UmgDwI5.png">
@@ -113,10 +113,10 @@
 <meta property="og:image" content="https://i.imgur.com/D71K5mn.png">
 <meta property="og:image" content="https://i.imgur.com/4z7h5BP.png">
 <meta property="og:image" content="https://i.imgur.com/9nh2vZb.png">
-<meta property="og:updated_time" content="2017-07-28T03:09:46.580Z">
+<meta property="og:updated_time" content="2017-07-29T08:42:13.694Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="将本地项目上传到Github">
-<meta name="twitter:description" content="前言将自己新建的本地项目上传到 Github ，包括本地 Git 仓库设置及远程仓库 Github 设置。本次操作需要用到管理工具Git，点击下载。">
+<meta name="twitter:description" content="前言 将自己新建的本地项目上传到 Github ，包括本地 Git 仓库设置及远程仓库 Github 设置。本次操作需要用到管理工具Git，点击下载。">
 <meta name="twitter:image" content="https://i.imgur.com/IL1rdhx.png">
 
 
@@ -369,8 +369,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-07-28T11:09:46+08:00">
-                2017-07-28
+              <time title="更新于" itemprop="dateModified" datetime="2017-07-29T16:42:13+08:00">
+                2017-07-29
               </time>
             
           </span>
@@ -435,73 +435,70 @@
 
       
         <blockquote>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>将自己新建的本地项目上传到 Github ，包括本地 Git 仓库设置及远程仓库 Github 设置。<br>本次操作需要用到管理工具<code>Git</code>，<a href="https://git-scm.com/" target="_blank" rel="external">点击下载</a>。</p>
+<p><strong>前言</strong></p>
+<p>将自己新建的本地项目上传到 Github ，包括本地 Git 仓库设置及远程仓库 Github 设置。<br>本次操作需要用到管理工具<code>Git</code>，<a href="https://git-scm.com/" target="_blank" rel="external">点击下载</a>。</p>
 </blockquote>
 <a id="more"></a>
 <h2 id="本地Git仓库设置"><a href="#本地Git仓库设置" class="headerlink" title="本地Git仓库设置"></a>本地Git仓库设置</h2><ol>
 <li><p>创建Git配置文件。</p>
 <p> 通过命令<code>git init</code>把即将要上传的本地项目文件夹变成Git可管理的仓库，即创建该项目的本地版本库。你会发现你的文件下生成一个<code>.git</code>文件夹，默认是隐藏文件。可通过<code>git status</code>来查看你当前的状态。Git安装好之后，打开所要上传的项目文件夹，鼠标右键点击windows系统下选择<code>Git Bash Here</code>。</p>
-<pre><code>$ git init
-$ git status
-</code></pre><p><img src="https://i.imgur.com/IL1rdhx.png" alt="图片1"></p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git init</div><div class="line">$ git status</div></pre></td></tr></table></figure>
+<p> <img src="https://i.imgur.com/IL1rdhx.png" alt="图片1"></p>
 </li>
 <li><p>通过<code>git add .</code>（.和add之间有空格）将当前所有文件添加到仓库上，仍可通过<code>git status</code>来查看你当前的状态。</p>
-<pre><code>$ git add .
-$ git status
-</code></pre><p><img src="https://i.imgur.com/UmgDwI5.png" alt="图片2"></p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git add .</div><div class="line">$ git status</div></pre></td></tr></table></figure>
+<p> <img src="https://i.imgur.com/UmgDwI5.png" alt="图片2"></p>
 </li>
 <li><p>用<code>git commit</code>把项目提交到仓库，<code>-m</code>后面引号里面是本次提交的注释内容，这个可以不写，但最好写上，不然会报错，详情自行Google。</p>
-<pre><code>$ git commit -m &quot;commit blog&quot;
-</code></pre><p><img src="https://i.imgur.com/CjcobJ0.png" alt="图片3"></p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git commit -m <span class="string">"commit blog"</span></div></pre></td></tr></table></figure>
+<p> <img src="https://i.imgur.com/CjcobJ0.png" alt="图片3"></p>
 <p> 本地Git仓库这边的工作做完了，下面就到了连接远程仓库（也就是连接Github）</p>
 </li>
 </ol>
 <h2 id="远程仓库Github设置"><a href="#远程仓库Github设置" class="headerlink" title="远程仓库Github设置"></a>远程仓库Github设置</h2><p>本地Git仓库和Github仓库之间的传输是通过SSH加密的，所以连接时需要设置一下，先在本地生成一<code>.ssh</code>。</p>
 <ol>
 <li><p>创建SSH KEY，先查看本地是否有.ssh文件，有的话删掉。</p>
-<pre><code>$ cd ~/.ssh
-</code></pre></li>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~/.ssh</div></pre></td></tr></table></figure>
+</li>
 <li><p>输入命令，生成.ssh，写你自己的邮箱。</p>
-<pre><code>$ ssh-keygen -t rsa -C &quot;your email@.com&quot;
-</code></pre><p> 一直回车就可以，这样就表示成功了，会在C盘的用户目录的根目录下生成一个<code>.ssh</code>文件，如果找不到，可以搜索一下，文件下会有<code>id_rsa</code>与<code>id_rsa.pug</code>两个文件。<br><img src="https://i.imgur.com/1NknRPR.png" alt="图片4"></p>
-<p> 本地目录下生成的文件：<br><img src="https://i.imgur.com/YAGYPRi.png" alt="图片5"></p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C <span class="string">"your email@.com"</span></div></pre></td></tr></table></figure>
+<p> 一直回车就可以，这样就表示成功了，会在C盘的用户目录的根目录下生成一个<code>.ssh</code>文件，如果找不到，可以搜索一下，文件下会有<code>id_rsa</code>与<code>id_rsa.pug</code>两个文件。</p>
+<p> <img src="https://i.imgur.com/1NknRPR.png" alt="图片4"></p>
+<p> 本地目录下生成的文件：</p>
+<p> <img src="https://i.imgur.com/YAGYPRi.png" alt="图片5"></p>
 </li>
 <li><p>为了避免与Github创建连接时出错，可以新建一个config文件，将以下代码复制进去：</p>
-<pre><code>Host github.com
-User git
-Hostname ssh.github.com
-PreferredAuthentications publickey
-IdentityFile ~/.ssh/id_rsa
-Port 443
-</code></pre></li>
-<li><p>登录Github，找到右上角的图标，打开点进里面的<code>Settings</code>，再选中里面的<code>SSH and GPG KEYS</code>，点击右上角的<code>New SSH key</code>，然后<code>Title</code>里面随便填，再把刚才<code>id_rsa.pub</code>里面的内容复制到<code>Title</code>下面的<code>Key</code>内容框里面，最后点击<code>Add SSH key</code>，这样就完成了SSH Key的加密。<br><img src="https://i.imgur.com/AxCcxg3.png" alt="图片6"></p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Host github.com</div><div class="line">User git</div><div class="line">Hostname ssh.github.com</div><div class="line">PreferredAuthentications publickey</div><div class="line">IdentityFile ~/.ssh/id_rsa</div><div class="line">Port 443</div></pre></td></tr></table></figure>
+</li>
+<li><p>登录Github，找到右上角的图标，打开点进里面的<code>Settings</code>，再选中里面的<code>SSH and GPG KEYS</code>，点击右上角的<code>New SSH key</code>，然后<code>Title</code>里面随便填，再把刚才<code>id_rsa.pub</code>里面的内容复制到<code>Title</code>下面的<code>Key</code>内容框里面，最后点击<code>Add SSH key</code>，这样就完成了SSH Key的加密。</p>
+<p> <img src="https://i.imgur.com/AxCcxg3.png" alt="图片6"></p>
 </li>
 <li><p>测试连接是否成功，下图表示访问成功。</p>
-<pre><code>$ ssh -t git@github.com
-</code></pre><p><img src="https://i.imgur.com/DXkZk93.png" alt="图片7"></p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh -t git@github.com</div></pre></td></tr></table></figure>
+<p> <img src="https://i.imgur.com/DXkZk93.png" alt="图片7"></p>
 </li>
 <li><p>在Github上创建一个Git仓库。</p>
-<p> <em>此时如果你勾选了<code>Initialize this repository with a README</code>（就是创建仓库的时候自动给你创建一个README文件），那么到了第8步你将本地仓库内容推送到远程仓库的时候就会报一个</em>failed to push some refs to <a href="https://github.com/guyibang/TEST2.git*的错误,这是由于你新创建的那个仓库里面的README文件不在本地仓库目录中，解决方法见第8步。*" target="_blank" rel="external">https://github.com/guyibang/TEST2.git*的错误,这是由于你新创建的那个仓库里面的README文件不在本地仓库目录中，解决方法见第8步。*</a></p>
+<p> <em>此时如果你勾选了<code>Initialize this repository with a README</code>（就是创建仓库的时候自动给你创建一个README文件），那么到了第8步你将本地仓库内容推送到远程仓库的时候就会报一个failed to push some refs to …的错误,这是由于你新创建的那个仓库里面的README文件不在本地仓库目录中，解决方法见第8步。</em></p>
+<p> <img src="https://i.imgur.com/D71K5mn.png" alt="图片8"></p>
+</li>
+<li><p>Github 和 Git 的关联。</p>
+<p> Github上创建好Git仓库之后我们就可以和本地仓库进行关联了，注意origin后面加的是你Github上创建好的仓库的地址。根据创建好的Git仓库页面的提示，可以在本地blog仓库的命令行输入。</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git remote add origin https://github.com/ZouJoshua/pelican-blog.git</div></pre></td></tr></table></figure>
+<p> <img src="https://i.imgur.com/4z7h5BP.png" alt="图片9"></p>
+<p> 解决办法：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">先输入：$ git remote rm origin</div><div class="line">再输入：$ git remote add origin https://github.com/ZouJoshua/pelican-blog.git</div></pre></td></tr></table></figure>
+</li>
+<li><p>关联完成之后把本地库的所有内容推送到远程仓库（也就是Github）上</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git push -u origin master</div></pre></td></tr></table></figure>
+<p> 由于新建的远程仓库是空的，所以要加上<code>-u</code>这个参数，等远程仓库里面有了内容之后，下次再从本地库上传内容的时候只需下面这样就可以了。</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git push origin master</div></pre></td></tr></table></figure>
+<p> 此时，推送时，会出现如下错误：</p>
+<p> <img src="https://i.imgur.com/9nh2vZb.png" alt="图片10"></p>
+<p> 这是由于新创建的那个仓库里面的README文件不在本地仓库目录中，这时我们可以通过以下命令先将内容合并：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git pull --rebase origin master</div></pre></td></tr></table></figure>
+<p> 然后再<code>git push</code>，登录Github查看，就会将自己的项目上传到Github。</p>
 </li>
 </ol>
-<p><img src="https://i.imgur.com/D71K5mn.png" alt="图片8"></p>
-<ol>
-<li>Github 和 Git 的关联。</li>
-</ol>
-<p>Github上创建好Git仓库之后我们就可以和本地仓库进行关联了，注意origin后面加的是你Github上创建好的仓库的地址。根据创建好的Git仓库页面的提示，可以在本地blog仓库的命令行输入。</p>
-<pre><code>$ git remote add origin https://github.com/ZouJoshua/pelican-blog.git
-</code></pre><p><img src="https://i.imgur.com/4z7h5BP.png" alt="图片9"></p>
-<p>解决办法：</p>
-<pre><code>先输入：$ git remote rm origin
-再输入：$ git remote add origin https://github.com/ZouJoshua/pelican-blog.git
-</code></pre><p>8.关联完成之后把本地库的所有内容推送到远程仓库（也就是Github）上</p>
-<pre><code>$ git push -u origin master
-</code></pre><p>由于新建的远程仓库是空的，所以要加上<code>-u</code>这个参数，等远程仓库里面有了内容之后，下次再从本地库上传内容的时候只需下面这样就可以了。</p>
-<pre><code>$ git push origin master
-</code></pre><p>此时，推送时，会出现如下错误：<br><img src="https://i.imgur.com/9nh2vZb.png" alt="图片10"></p>
-<p>这是由于新创建的那个仓库里面的README文件不在本地仓库目录中，这时我们可以通过以下命令先将内容合并：</p>
-<pre><code>$ git pull --rebase origin master
-</code></pre><p>然后再<code>git push</code>，登录Github查看，就会将自己的项目上传到Github。</p>
 
       
     </div>
@@ -854,7 +851,7 @@ Port 443
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地Git仓库设置"><span class="nav-number"></span> <span class="nav-text">本地Git仓库设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程仓库Github设置"><span class="nav-number"></span> <span class="nav-text">远程仓库Github设置</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#本地Git仓库设置"><span class="nav-number">1.</span> <span class="nav-text">本地Git仓库设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程仓库Github设置"><span class="nav-number">2.</span> <span class="nav-text">远程仓库Github设置</span></a></li></ol></div>
             
 
           </div>
