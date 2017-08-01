@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://joshuazou.cn/"/>
-  <updated>2017-08-01T07:22:42.026Z</updated>
+  <updated>2017-08-01T09:31:31.685Z</updated>
   <id>http://joshuazou.cn/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://joshuazou.cn/2017/07/25/Hexo%20+%20Github%20%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/"/>
     <id>http://joshuazou.cn/2017/07/25/Hexo + Github 搭建静态博客/</id>
     <published>2017-07-25T02:00:00.000Z</published>
-    <updated>2017-08-01T07:22:42.026Z</updated>
+    <updated>2017-08-01T09:31:31.685Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p><strong>前言</strong></p>
@@ -310,7 +310,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">menu:</div><div class="line">  home: 首页</div><div class="line">  archives: 归档</div><div class="line">  categories: 分类</div><div class="line">  tags: 标签</div><div class="line">  about: 关于</div><div class="line">  search: 搜索</div><div class="line">  schedule: 日程表</div><div class="line">  sitemap: 站点地图</div><div class="line">  commonweal: 公益404</div><div class="line">  guestbook: 留言</div></pre></td></tr></table></figure>
 <h3 id="添加友言评论系统"><a href="#添加友言评论系统" class="headerlink" title="添加友言评论系统"></a>添加友言评论系统</h3><p>注册<a href="http://www.uyan.cc" target="_blank" rel="external">友言</a>得到自己的<code>uid</code>，并在<code>主题配置文件</code>里设置：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">youyan_uid: your-uid</div></pre></td></tr></table></figure>
-<h3 id="文章配图"><a href="#文章配图" class="headerlink" title="文章配图"></a>文章配图</h3><p>在标题和摘要中间，插进一张<code>Logo</code>图片，而当点击进入后，就不会再显示这个<code>logo</code>图片了。原文地址：Hexo主题的数据封装，样式渲染和扩展实例。</p>
+<h3 id="文章配图"><a href="#文章配图" class="headerlink" title="文章配图"></a>文章配图</h3><p>在标题和摘要中间，插进一张<code>Logo</code>图片，而当点击进入后，就不会再显示这个<code>logo</code>图片了。</p>
 <h4 id="css样式"><a href="#css样式" class="headerlink" title="css样式"></a>css样式</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo/themes/next/<span class="built_in">source</span>/css/: 是next主题的样式文件，决定主题的外观。</div><div class="line">hexo/themes/next/<span class="built_in">source</span>/css/main.styl：汇总css文件夹中所有的样式。</div><div class="line">hexo/themes/next/<span class="built_in">source</span>/css/ _custom/custom.styl：是空的，专门让开发者扩展。</div></pre></td></tr></table></figure>
 <p>需要在custom.styl里为图片设计一个专用容器。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">//图片外部的容器方框</div><div class="line">.out-img-topic &#123;</div><div class="line">  display: block;</div><div class="line">  max-height:300px;</div><div class="line">  margin-bottom: 24px;</div><div class="line">  overflow: hidden;</div><div class="line">&#125;</div><div class="line">//图片</div><div class="line">img.img-topic &#123;</div><div class="line">  display: block ;</div><div class="line">  margin-left: .7em;</div><div class="line">  margin-right: .7em;</div><div class="line">  padding: 0;</div><div class="line">  <span class="built_in">float</span>: right;</div><div class="line">  clear: right;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -330,6 +330,12 @@
 </ul>
 <p>这些全部设置完成后，此时你并不能要申请的域名访问你的博客。接着你需要做的是在<code>hexo</code>根目录的<code>source</code>文件夹里创建<code>CNAME</code>文件，不带任何后缀，里面添加你的域名信息，如：<code>joshuazou.cn</code>。实践证明如果此时你填写的是<code>www.joshua.cn</code>那么以后你只能用<code>www.joshua.cn</code>访问，而如果填写的是<code>joshua.cn</code>。那么用<code>www.joshua.cn</code>和<code>joshua.cn</code>访问都是可以的。</p>
 <p>重新清理hexo,并发布即可用新的域名访问。</p>
+<h4 id="发布文章到Github"><a href="#发布文章到Github" class="headerlink" title="发布文章到Github"></a>发布文章到Github</h4><p>如需调试，可在Git Bush中输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo s --debug</div></pre></td></tr></table></figure>
+<p>然后在<code>localhost:4000</code>中进行调试，修改后刷新浏览器，即可看到配置后的样式。</p>
+<p>调试完成后，可以用以下命令发布：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line">hexo d -g</div></pre></td></tr></table></figure>
+<p>这样，就可以在自己的域名看到自己搭建的博客了，<a href="http://joshuazou.cn">进入围观</a>。</p>
 ]]></content>
     
     <summary type="html">
@@ -553,13 +559,13 @@
       <category term="Pelican" scheme="http://joshuazou.cn/categories/Pelican/"/>
     
     
-      <category term="blog" scheme="http://joshuazou.cn/tags/blog/"/>
-    
-      <category term="git" scheme="http://joshuazou.cn/tags/git/"/>
-    
       <category term="pelican" scheme="http://joshuazou.cn/tags/pelican/"/>
     
       <category term="python" scheme="http://joshuazou.cn/tags/python/"/>
+    
+      <category term="blog" scheme="http://joshuazou.cn/tags/blog/"/>
+    
+      <category term="git" scheme="http://joshuazou.cn/tags/git/"/>
     
   </entry>
   
