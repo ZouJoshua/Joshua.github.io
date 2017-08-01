@@ -30,8 +30,6 @@
 
 
 
-  <meta name="baidu-site-verification" content="V7mr1PmwNt" />
-
 
 
 
@@ -106,7 +104,8 @@
 <meta property="og:description" content="前言 最近用 Python 的 Pelican 搭建了自己的静态博客，效果预览（现已换成hexokinase））。在用 Pelican 搭建博客的过程中几乎 Pelican 支持的主题都试过，都没什么让自己满意的，最后才勉强选了个看的过去的主题，但是当我看到 Hexo 搭建的博客系统的时候，瞬间觉得 Hexo 的 NexT 主题简洁又大方，很喜欢，所以打算继续折腾下，顺便简单了解下 Node.j">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://i.imgur.com/89mkcaQ.png">
-<meta property="og:updated_time" content="2017-07-31T09:30:56.934Z">
+<meta property="og:image" content="http://otr5y24lm.bkt.clouddn.com/image/blog/2.png">
+<meta property="og:updated_time" content="2017-08-01T07:22:42.026Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo + Github 搭建静态博客">
 <meta name="twitter:description" content="前言 最近用 Python 的 Pelican 搭建了自己的静态博客，效果预览（现已换成hexokinase））。在用 Pelican 搭建博客的过程中几乎 Pelican 支持的主题都试过，都没什么让自己满意的，最后才勉强选了个看的过去的主题，但是当我看到 Hexo 搭建的博客系统的时候，瞬间觉得 Hexo 的 NexT 主题简洁又大方，很喜欢，所以打算继续折腾下，顺便简单了解下 Node.j">
@@ -362,8 +361,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-07-31T17:30:56+08:00">
-                2017-07-31
+              <time title="更新于" itemprop="dateModified" datetime="2017-08-01T15:22:42+08:00">
+                2017-08-01
               </time>
             
           </span>
@@ -683,10 +682,24 @@
 <p>配置成功后，<code>hexo g</code>编译时会在<code>hexo</code>站点根目录生成<code>sitemap.xml</code>和<code>baidusitemap.xml</code>。其中<code>sitemap.xml</code>适合提交给谷歌搜素引擎，<code>baidusitemap.xml</code>适合提交百度搜索引擎。<br>其次，在站点根目录下新建一个robots.txt文件，其中添加下面的一段代码（具体网站改为你自己的网址）：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># hexo robots.txt</span></div><div class="line">User-agent: *</div><div class="line">Allow: /</div><div class="line">Allow: /archives/</div><div class="line">Disallow: /vendors/</div><div class="line">Disallow: /js/</div><div class="line">Disallow: /css/</div><div class="line">Disallow: /fonts/</div><div class="line">Disallow: /vendors/</div><div class="line">Disallow: /fancybox/</div><div class="line">Sitemap: http://www.joshuazou.cn/sitemap.xml</div><div class="line">Sitemap: https://www.joshuazou.cn/sitemap.xml</div></pre></td></tr></table></figure>
 <p>我们在百度里面搜索site:joshuazou.cn，发现没有我们的博客并没有被百度收录，也就是说你的博客别人可能会看不到，下面来解决这个问题：</p>
-<p>进入<a href="http://zhanzhang.baidu.com/linksubmit/url" target="_blank" rel="external">链接提交</a>，然后<a href="http://zhanzhang.baidu.com/site/index" target="_blank" rel="external">验证网站所有权</a>，选择文件验证，下载<code>baidu_verify_qzE3XIJ4hj.html</code>文件到<code>source/</code>目录下面，修改<code>站点配置文件</code>。</p>
+<p>进入<a href="http://zhanzhang.baidu.com/linksubmit/url" target="_blank" rel="external">链接提交</a>，然后<a href="http://zhanzhang.baidu.com/site/index" target="_blank" rel="external">验证网站所有权</a>，有三种方式可以选择，一般选择<code>文件验证</code>，下载<code>baidu_verify_qzE3XIJ4hj.html</code>文件到<code>source/</code>目录下面，修改<code>站点配置文件</code>。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">skip_render: </div><div class="line">  - README.md</div><div class="line">  - baidu_verify_qzE3XIJ4hj.html</div></pre></td></tr></table></figure>
-<p>按照说明完成验证，在百度站长平台里面的站点管理里面看到是否验证成功。</p>
-<p>上面进行步骤成功之后，进入站点信息-&gt;网页抓取-&gt;链接提交-&gt;详情，按照说明进行设置。<br>完成后等一段时间，在百度里面搜索site:joshuazou.cn，有记录说明是被收录了。</p>
+<p>但是，我经过多次验证总是失败，所以最终选择<code>CNAME验证</code>，<a href="http://jingyan.baidu.com/article/3d69c55152b587f0cf02d7c0.html" target="_blank" rel="external">详细步骤</a>。<br>按照说明完成验证，在百度站长平台里面的站点管理里面看到是否验证成功。</p>
+<p>上面进行步骤成功之后，进入站点信息-&gt;网页抓取-&gt;链接提交-&gt;详情，按照说明进行设置。<br>这里推荐<code>自动推送</code>和<code>sitemap</code>。</p>
+<p>从效率上来说：</p>
+<p>主动推送&gt;自动推送&gt;sitemap</p>
+<p><code>主题配置文件</code>下设置,将<code>baidu_push</code>设置为<code>true</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">baidu_push: <span class="literal">true</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>设置自动推送</p>
+<p>  自动推送很简单，就是在你代码里面嵌入自动推送JS代码，在页面被访问时，页面URL将立即被推送给百度<br>  复制代码到下面目录文件<code>themes\next\layout\_third-party\seo\baidu_push.swig</code>里就好添加到下面就行。</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&#123;% <span class="keyword">if</span> theme.baidu_push %&#125;</div><div class="line">&lt;script&gt;</div><div class="line">(<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">    var bp = document.createElement(<span class="string">'script'</span>);</div><div class="line">    var curProtocol = window.location.protocol.split(<span class="string">':'</span>)[0];</div><div class="line">    <span class="keyword">if</span> (curProtocol === <span class="string">'https'</span>) &#123;</div><div class="line">        bp.src = <span class="string">'https://zz.bdstatic.com/linksubmit/push.js'</span>;        </div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">        bp.src = <span class="string">'http://push.zhanzhang.baidu.com/push.js'</span>;</div><div class="line">    &#125;</div><div class="line">    var s = document.getElementsByTagName(<span class="string">"script"</span>)[0];</div><div class="line">    s.parentNode.insertBefore(bp, s);</div><div class="line">&#125;)();</div><div class="line">&lt;/script&gt;</div><div class="line">&#123;% endif %&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>sitemap</p>
+<p>  直接提交就行。</p>
+</li>
+</ul>
+<p>完成后等一段时间，在百度里面搜索site:joshuazou.cn，有记录说明是被收录了。</p>
 <p>类似百度，通过HTML文件方式验证通过后，在站点里选择 抓取-&gt;站点地图里 添加/测试站点地图。<br>完成后等一段时间（大概一天时间）在Google里面搜索site:joshuazou.cn，就可以看到搜索结果了。</p>
 <h4 id="页脚加入地图"><a href="#页脚加入地图" class="headerlink" title="页脚加入地图"></a>页脚加入地图</h4><p>在页脚加入百度地图和谷歌地图链接：</p>
 <p>找到<code>\themes\next\layout\_partials\footer.swig</code>文件，百度和Google网站地图，上面已经安装了，这是插入到底栏的代码：</p>
@@ -714,10 +727,13 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">title: &#123;&#123; title &#125;&#125;</div><div class="line">date: &#123;&#123; date &#125;&#125;</div><div class="line">categories:</div><div class="line">tags:</div><div class="line">images:</div></pre></td></tr></table></figure>
 <h2 id="部署博客"><a href="#部署博客" class="headerlink" title="部署博客"></a>部署博客</h2><h3 id="个人域名设置"><a href="#个人域名设置" class="headerlink" title="个人域名设置"></a>个人域名设置</h3><p>国内国外有很多的域名供应商，选择一个好的机构购买域名，会为自己的站点配置节约很多时间，也不会因为域名的出错，导致影响百度对我们个人博客的收录。近几年来，国内做的比较好的域名供应商有阿里的万网。我就是在阿里的万网购买的域名。通过查找，找到自己喜欢的域名。</p>
 <ul>
-<li><p>域名解析</p>
-<p>  登录进入万网的域名控制台，点击”域名和网站”中的”云DNS”</p>
+<li><p>登录进入万网的域名控制台，点击”域名和网站”中的”云DNS”</p>
+<p>  点击对应域名的”解析”，点击添加解析，记录类型选A或CNAME，A记录的记录值就是ip地址，github(官方文档)提供了两个IP地址，192.30.252.153和192.30.252.154，这两个IP地址为github的服务器地址，两个都要填上，解析记录设置两个www和@，线路就默认就行了，CNAME记录值填你的github博客网址。如我的是joshuazou.cn。</p>
+<p>  <img src="http://otr5y24lm.bkt.clouddn.com/image/blog/2.png" alt=""></p>
 </li>
 </ul>
+<p>这些全部设置完成后，此时你并不能要申请的域名访问你的博客。接着你需要做的是在<code>hexo</code>根目录的<code>source</code>文件夹里创建<code>CNAME</code>文件，不带任何后缀，里面添加你的域名信息，如：<code>joshuazou.cn</code>。实践证明如果此时你填写的是<code>www.joshua.cn</code>那么以后你只能用<code>www.joshua.cn</code>访问，而如果填写的是<code>joshua.cn</code>。那么用<code>www.joshua.cn</code>和<code>joshua.cn</code>访问都是可以的。</p>
+<p>重新清理hexo,并发布即可用新的域名访问。</p>
 
       
     </div>

@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://joshuazou.cn/about/index.html</loc>
+    
+    <lastmod>2017-08-01T07:41:21.707Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://joshuazou.cn/2017/07/25/Hexo%20+%20Github%20%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</loc>
     
-    <lastmod>2017-07-31T09:30:56.934Z</lastmod>
+    <lastmod>2017-08-01T07:22:42.026Z</lastmod>
     
   </url>
   
@@ -47,13 +54,6 @@
     <loc>http://joshuazou.cn/categories/index.html</loc>
     
     <lastmod>2017-07-26T03:14:12.010Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://joshuazou.cn/about/index.html</loc>
-    
-    <lastmod>2017-07-26T03:12:55.584Z</lastmod>
     
   </url>
   
