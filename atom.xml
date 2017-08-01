@@ -559,13 +559,13 @@
       <category term="Pelican" scheme="http://joshuazou.cn/categories/Pelican/"/>
     
     
-      <category term="pelican" scheme="http://joshuazou.cn/tags/pelican/"/>
-    
-      <category term="python" scheme="http://joshuazou.cn/tags/python/"/>
-    
       <category term="blog" scheme="http://joshuazou.cn/tags/blog/"/>
     
       <category term="git" scheme="http://joshuazou.cn/tags/git/"/>
+    
+      <category term="pelican" scheme="http://joshuazou.cn/tags/pelican/"/>
+    
+      <category term="python" scheme="http://joshuazou.cn/tags/python/"/>
     
   </entry>
   

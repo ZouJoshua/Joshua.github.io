@@ -3,6 +3,7 @@
 
 
     
+    
   <url>
     <loc>http://joshuazou.cn/2017/07/25/Hexo%20+%20Github%20%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2017-08-01T09:31:31.685Z</lastmod>
@@ -24,7 +25,6 @@
     </data>
     </url>
 
-    
     
     
   <url>
@@ -59,13 +59,13 @@
         <title>采用Pelican+Github搭建数据科学博客</title>
         <pubTime>2017-07-07T06:00:00.000Z</pubTime>
         
-        <tag>pelican</tag>
-         
-        <tag>python</tag>
-         
         <tag>blog</tag>
          
         <tag>git</tag>
+         
+        <tag>pelican</tag>
+         
+        <tag>python</tag>
          
          
            
