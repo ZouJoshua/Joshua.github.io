@@ -3,37 +3,13 @@
 
 
     
-    
   <url>
-    <loc>http://joshuazou.cn/2017/07/25/Hexo%20+%20Github%20%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2017-08-01T09:31:31.685Z</lastmod>
-    <data>
-        <display>
-        <title>Hexo + Github 搭建静态博客</title>
-        <pubTime>2017-07-25T02:00:00.000Z</pubTime>
-        
-        <tag>blog</tag>
-         
-        <tag>Node.js</tag>
-         
-         
-           
-             
-              <breadCrumb title="Hexo" url="http://joshuazou.cn/categories/Hexo/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-    
-  <url>
-    <loc>http://joshuazou.cn/2017/07/17/%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E4%B8%8A%E4%BC%A0%E5%88%B0Github/</loc>
-    <lastmod>2017-07-29T08:42:13.694Z</lastmod>
+    <loc>http://joshuazou.cn/2017/07/10/%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E4%B8%8A%E4%BC%A0%E5%88%B0Github/</loc>
+    <lastmod>2017-08-01T09:38:01.703Z</lastmod>
     <data>
         <display>
         <title>将本地项目上传到Github</title>
-        <pubTime>2017-07-17T02:00:00.000Z</pubTime>
+        <pubTime>2017-07-10T02:00:00.000Z</pubTime>
         
         <tag>blog</tag>
          
@@ -52,12 +28,12 @@
 
     
   <url>
-    <loc>http://joshuazou.cn/2017/07/07/%E9%87%87%E7%94%A8Pelican+Github%E6%90%AD%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2017-07-28T09:03:15.803Z</lastmod>
+    <loc>http://joshuazou.cn/2017/07/01/%E9%87%87%E7%94%A8Pelican+Github%E6%90%AD%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2017-08-01T09:37:49.756Z</lastmod>
     <data>
         <display>
         <title>采用Pelican+Github搭建数据科学博客</title>
-        <pubTime>2017-07-07T06:00:00.000Z</pubTime>
+        <pubTime>2017-07-01T06:00:00.000Z</pubTime>
         
         <tag>blog</tag>
          
@@ -78,7 +54,31 @@
 
     
   <url>
-    <loc>http://joshuazou.cn/2017/01/11/hello-world/</loc>
+    <loc>http://joshuazou.cn/2017/07/25/Hexo%20+%20Github%20%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2017-08-01T09:37:27.309Z</lastmod>
+    <data>
+        <display>
+        <title>Hexo + Github 搭建静态博客</title>
+        <pubTime>2017-07-25T02:00:00.000Z</pubTime>
+        
+        <tag>blog</tag>
+         
+        <tag>Node.js</tag>
+         
+         
+           
+             
+              <breadCrumb title="Hexo" url="http://joshuazou.cn/categories/Hexo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+    
+  <url>
+    <loc>http://joshuazou.cn/2017/01/11/Test/</loc>
     <lastmod>2017-07-28T02:56:32.236Z</lastmod>
     <data>
         <display>
