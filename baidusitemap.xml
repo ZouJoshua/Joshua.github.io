@@ -3,6 +3,29 @@
 
 
     
+    
+  <url>
+    <loc>http://joshuazou.cn/2017/07/25/Hexo%20+%20Github%20%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2017-08-07T08:52:49.527Z</lastmod>
+    <data>
+        <display>
+        <title>Hexo + Github 搭建静态博客</title>
+        <pubTime>2017-07-25T02:00:00.000Z</pubTime>
+        
+        <tag>blog</tag>
+         
+        <tag>Node.js</tag>
+         
+         
+           
+             
+              <breadCrumb title="Hexo" url="http://joshuazou.cn/categories/Hexo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
   <url>
     <loc>http://joshuazou.cn/2017/08/01/Python%E7%88%AC%E5%8F%96js%E5%8A%A0%E8%BD%BD%E7%9A%84%E6%95%B0%E6%8D%AE/</loc>
     <lastmod>2017-08-02T08:46:39.298Z</lastmod>
@@ -69,28 +92,6 @@
            
              
               <breadCrumb title="Pelican" url="http://joshuazou.cn/categories/Pelican/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://joshuazou.cn/2017/07/25/Hexo%20+%20Github%20%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2017-08-01T09:37:27.309Z</lastmod>
-    <data>
-        <display>
-        <title>Hexo + Github 搭建静态博客</title>
-        <pubTime>2017-07-25T02:00:00.000Z</pubTime>
-        
-        <tag>blog</tag>
-         
-        <tag>Node.js</tag>
-         
-         
-           
-             
-              <breadCrumb title="Hexo" url="http://joshuazou.cn/categories/Hexo/"/>
           
         </display>
     </data>

@@ -1,1 +1,5 @@
 http://joshuazou.cn/2017/08/01/Python爬取js加载的数据/
+http://joshuazou.cn/2017/07/25/Hexo + Github 搭建静态博客/
+http://joshuazou.cn/2017/07/10/将本地项目上传到Github/
+http://joshuazou.cn/2017/07/01/采用Pelican+Github搭建数据科学博客/
+http://joshuazou.cn/2017/01/11/Test/
