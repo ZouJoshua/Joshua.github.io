@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://joshuazou.cn/"/>
-  <updated>2017-08-01T09:37:27.309Z</updated>
+  <updated>2017-08-02T08:46:39.298Z</updated>
   <id>http://joshuazou.cn/</id>
   
   <author>
@@ -14,6 +14,60 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python爬取需执行js的网页数据</title>
+    <link href="http://joshuazou.cn/2017/08/01/Python%E7%88%AC%E5%8F%96js%E5%8A%A0%E8%BD%BD%E7%9A%84%E6%95%B0%E6%8D%AE/"/>
+    <id>http://joshuazou.cn/2017/08/01/Python爬取js加载的数据/</id>
+    <published>2017-08-01T02:00:00.000Z</published>
+    <updated>2017-08-02T08:46:39.298Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p><strong>前言</strong><br>一般情况下，对静态网页我一般采用”requests + BeautifulSoup + re”这三个库，可以解决大部分爬虫问题，但是对于通过Ajax、JavaScript等动态加载的网页，就需要通过”Phantomjs + CasperJS + Selenium”来实现了。如果工程量较大，一般会采用Scrapy框架处理爬虫。本文解决的是在工作中遇到的一个小问题，即遇到需要执行页面上JavaScript才能爬取数据的网页，所以用 Selenium 和 Phantomjs。</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>抓取大连商品交易所期货行情的一个月的日行情数据，<a href="http://218.25.154.81/portal/cate?cid=1261730308135" target="_blank" rel="external">大连商品交易所</a>。</p>
+<h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>在选定<code>查询日期</code>后，品种选<code>全部</code>之后，点击<code>查询</code>进行抓包分析，先用常规方法进行抓取数据。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">import requests</div><div class="line"></div><div class="line">url = <span class="string">"http://218.25.154.81/PublicWeb/MainServlet"</span></div><div class="line">postdata =&#123;<span class="string">"action"</span>:<span class="string">"Pu00011_result"</span>,<span class="string">"Pu00011_Input.trade_date"</span>:<span class="string">"20170801"</span>,<span class="string">"Pu00011_Input.variety"</span>:<span class="string">"all"</span>,<span class="string">"Pu00011_Input.trade_type"</span>:<span class="string">"0"</span>,<span class="string">"Submit"</span>:<span class="string">"%B2%E9+%D1%AF"</span>&#125;</div><div class="line">r = requests.post(url,data = postdata)</div><div class="line"><span class="built_in">print</span>(r.text)</div></pre></td></tr></table></figure>
+<p>却发现输出的为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;alert(<span class="string">'输入项包含非法字符！'</span>);window.history.back();&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>因此我判断数据必须要在<code>javascript</code>执行后才能获取，于是，我采用了<code>Phantomjs</code>+<code>Selenium</code>的方式获取这一类数据。</p>
+<h1 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h1><h2 id="本地环境"><a href="#本地环境" class="headerlink" title="本地环境"></a>本地环境</h2><p>Windows 10 / 64位</p>
+<p>Python 3.6.0</p>
+<h2 id="Selenium"><a href="#Selenium" class="headerlink" title="Selenium"></a>Selenium</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p><code>selenium</code>是一个用于Web应用自动化程序测试的工具，测试直接运行在浏览器中，就像真正的用户在操作一样</p>
+<p><code>selenium2</code>支持通过驱动真实浏览器（FirfoxDriver，IternetExplorerDriver，OperaDriver，ChromeDriver）</p>
+<p><code>selenium2</code>支持通过驱动无界面浏览器（HtmlUnit，PhantomJs）</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>可以直接在自己的pip安装目录下输入命令安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install -U selenium</div></pre></td></tr></table></figure>
+<h2 id="Phantomjs"><a href="#Phantomjs" class="headerlink" title="Phantomjs"></a>Phantomjs</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p><code>PhantomJS</code> 是一个基于 <code>WebKit</code>（WebKit是一个开源的浏览器引擎，Chrome，Safari就是用的这个浏览器引擎） 的服务器端 <code>JavaScript API</code>，</p>
+<p>主要应用场景是：无需浏览器的 Web 测试，页面访问自动化，屏幕捕获，网络监控</p>
+<h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><p>下载源码安装，<a href="http://phantomjs.org/download.html" target="_blank" rel="external">下载地址</a>。</p>
+<p>解压并把解压缩的路径<code>D:\Python\phantomjs-2.1.1-windows\bin\</code><br>添加到环境变量中即可。</p>
+<p>Python 可以使用 <code>Selenium</code> 执行 <code>javascript</code> ，<code>Selenium</code> 可以让浏览器自动加载页面，获取需要的数据。<code>Selenium</code> 自己不带浏览器，可以使用第三方浏览器如Firefox，Chrome等，也可以使用headless浏览器如<code>PhantomJS</code>在后台执行。</p>
+<p>首先，在一般的浏览器都是像Chrome、Firefox之类的有图形界面的，但是这种GUI浏览器其实执行效率比较慢，因为要渲染出图形来，那么无GUI的浏览器的优势就有了，无GUI意味着占用资源少了，执行效率快，而爬虫中如果是选择了模拟浏览器的方式来做页面请求，那么把GUI的浏览器换成无GUI的浏览器是可以在一定程度上提高爬虫速度，减少资源消耗的，所以本例中也选择了<code>Selenium</code> + <code>Phantomjs</code> 的方式处理爬虫。</p>
+<h2 id="Selenium-PhantomJS-安装测试"><a href="#Selenium-PhantomJS-安装测试" class="headerlink" title="Selenium + PhantomJS 安装测试"></a>Selenium + PhantomJS 安装测试</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">from selenium import webdriver  </div><div class="line">driver = webdriver.PhantomJS(executable_path=r<span class="string">"D:\Python\phantomjs-2.1.1-windows\bin\phantomjs.exe"</span>)  </div><div class="line">driver.get(<span class="string">"http://www.baidu.com"</span>)  </div><div class="line">data = driver.title</div><div class="line">driver.save_screenshot(<span class="string">'baidu.png'</span>)  </div><div class="line"><span class="built_in">print</span>(data)</div></pre></td></tr></table></figure>
+<p>如果输出的结果为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">百度一下，你就知道</div></pre></td></tr></table></figure>
+<p>同时，在默认目录下生成百度的截图，则说明配置完成，接下来可以抓取页面了。</p>
+<p><img src="http://i.imgur.com/L2X6Kva.png" alt=""></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;前言&lt;/strong&gt;&lt;br&gt;一般情况下，对静态网页我一般采用”requests + BeautifulSoup + re”这三个库，可以解决大部分爬虫问题，但是对于通过Ajax、JavaScript等动态加载的网页，就需要通过”Phantomjs + CasperJS + Selenium”来实现了。如果工程量较大，一般会采用Scrapy框架处理爬虫。本文解决的是在工作中遇到的一个小问题，即遇到需要执行页面上JavaScript才能爬取数据的网页，所以用 Selenium 和 Phantomjs。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="Python爬虫" scheme="http://joshuazou.cn/categories/Python%E7%88%AC%E8%99%AB/"/>
+    
+    
+      <category term="Python" scheme="http://joshuazou.cn/tags/Python/"/>
+    
+      <category term="JavaScripts" scheme="http://joshuazou.cn/tags/JavaScripts/"/>
+    
+  </entry>
   
   <entry>
     <title>Hexo + Github 搭建静态博客</title>

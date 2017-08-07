@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hello world!" />
+  <meta name="keywords" content="Python,JavaScripts," />
 
 
 
@@ -95,16 +95,20 @@
 
 
 
-<meta name="description" content="数据科学、数据挖掘分析博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="心安即行 自在欢喜">
-<meta property="og:url" content="http://joshuazou.cn/tags/Node-js/index.html">
+<meta name="description" content="前言一般情况下，对静态网页我一般采用”requests + BeautifulSoup + re”这三个库，可以解决大部分爬虫问题，但是对于通过Ajax、JavaScript等动态加载的网页，就需要通过”Phantomjs + CasperJS + Selenium”来实现了。如果工程量较大，一般会采用Scrapy框架处理爬虫。本文解决的是在工作中遇到的一个小问题，即遇到需要执行页面上JavaS">
+<meta name="keywords" content="Python,JavaScripts">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python爬取需执行js的网页数据">
+<meta property="og:url" content="http://joshuazou.cn/2017/08/01/Python爬取js加载的数据/index.html">
 <meta property="og:site_name" content="心安即行 自在欢喜">
-<meta property="og:description" content="数据科学、数据挖掘分析博客">
+<meta property="og:description" content="前言一般情况下，对静态网页我一般采用”requests + BeautifulSoup + re”这三个库，可以解决大部分爬虫问题，但是对于通过Ajax、JavaScript等动态加载的网页，就需要通过”Phantomjs + CasperJS + Selenium”来实现了。如果工程量较大，一般会采用Scrapy框架处理爬虫。本文解决的是在工作中遇到的一个小问题，即遇到需要执行页面上JavaS">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://i.imgur.com/L2X6Kva.png">
+<meta property="og:updated_time" content="2017-08-02T08:46:39.298Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="心安即行 自在欢喜">
-<meta name="twitter:description" content="数据科学、数据挖掘分析博客">
+<meta name="twitter:title" content="Python爬取需执行js的网页数据">
+<meta name="twitter:description" content="前言一般情况下，对静态网页我一般采用”requests + BeautifulSoup + re”这三个库，可以解决大部分爬虫问题，但是对于通过Ajax、JavaScript等动态加载的网页，就需要通过”Phantomjs + CasperJS + Selenium”来实现了。如果工程量较大，一般会采用Scrapy框架处理爬虫。本文解决的是在工作中遇到的一个小问题，即遇到需要执行页面上JavaS">
+<meta name="twitter:image" content="http://i.imgur.com/L2X6Kva.png">
 
 
 
@@ -132,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://joshuazou.cn/tags/Node-js/"/>
+  <link rel="canonical" href="http://joshuazou.cn/2017/08/01/Python爬取js加载的数据/"/>
 
 
 
 
 
-  <title>标签: Node.js | 心安即行 自在欢喜</title>
+  <title>Python爬取需执行js的网页数据 | 心安即行 自在欢喜</title>
   
 
 
@@ -163,7 +167,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -301,44 +305,260 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h1>Node.js<small>标签</small>
-      </h1>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://joshuazou.cn/2017/08/01/Python爬取js加载的数据/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joshua Zou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心安即行 自在欢喜">
+    </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python爬取需执行js的网页数据</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-01T10:00:00+08:00">
+                2017-08-01
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-08-02T16:46:39+08:00">
+                2017-08-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python爬虫/" itemprop="url" rel="index">
+                    <span itemprop="name">Python爬虫</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/08/01/Python爬取js加载的数据/" class="leancloud_visitors" data-flag-title="Python爬取需执行js的网页数据">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <blockquote>
+<p><strong>前言</strong><br>一般情况下，对静态网页我一般采用”requests + BeautifulSoup + re”这三个库，可以解决大部分爬虫问题，但是对于通过Ajax、JavaScript等动态加载的网页，就需要通过”Phantomjs + CasperJS + Selenium”来实现了。如果工程量较大，一般会采用Scrapy框架处理爬虫。本文解决的是在工作中遇到的一个小问题，即遇到需要执行页面上JavaScript才能爬取数据的网页，所以用 Selenium 和 Phantomjs。</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>抓取大连商品交易所期货行情的一个月的日行情数据，<a href="http://218.25.154.81/portal/cate?cid=1261730308135" target="_blank" rel="external">大连商品交易所</a>。</p>
+<h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>在选定<code>查询日期</code>后，品种选<code>全部</code>之后，点击<code>查询</code>进行抓包分析，先用常规方法进行抓取数据。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">import requests</div><div class="line"></div><div class="line">url = <span class="string">"http://218.25.154.81/PublicWeb/MainServlet"</span></div><div class="line">postdata =&#123;<span class="string">"action"</span>:<span class="string">"Pu00011_result"</span>,<span class="string">"Pu00011_Input.trade_date"</span>:<span class="string">"20170801"</span>,<span class="string">"Pu00011_Input.variety"</span>:<span class="string">"all"</span>,<span class="string">"Pu00011_Input.trade_type"</span>:<span class="string">"0"</span>,<span class="string">"Submit"</span>:<span class="string">"%B2%E9+%D1%AF"</span>&#125;</div><div class="line">r = requests.post(url,data = postdata)</div><div class="line"><span class="built_in">print</span>(r.text)</div></pre></td></tr></table></figure>
+<p>却发现输出的为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;alert(<span class="string">'输入项包含非法字符！'</span>);window.history.back();&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>因此我判断数据必须要在<code>javascript</code>执行后才能获取，于是，我采用了<code>Phantomjs</code>+<code>Selenium</code>的方式获取这一类数据。</p>
+<h1 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h1><h2 id="本地环境"><a href="#本地环境" class="headerlink" title="本地环境"></a>本地环境</h2><p>Windows 10 / 64位</p>
+<p>Python 3.6.0</p>
+<h2 id="Selenium"><a href="#Selenium" class="headerlink" title="Selenium"></a>Selenium</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p><code>selenium</code>是一个用于Web应用自动化程序测试的工具，测试直接运行在浏览器中，就像真正的用户在操作一样</p>
+<p><code>selenium2</code>支持通过驱动真实浏览器（FirfoxDriver，IternetExplorerDriver，OperaDriver，ChromeDriver）</p>
+<p><code>selenium2</code>支持通过驱动无界面浏览器（HtmlUnit，PhantomJs）</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>可以直接在自己的pip安装目录下输入命令安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install -U selenium</div></pre></td></tr></table></figure>
+<h2 id="Phantomjs"><a href="#Phantomjs" class="headerlink" title="Phantomjs"></a>Phantomjs</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p><code>PhantomJS</code> 是一个基于 <code>WebKit</code>（WebKit是一个开源的浏览器引擎，Chrome，Safari就是用的这个浏览器引擎） 的服务器端 <code>JavaScript API</code>，</p>
+<p>主要应用场景是：无需浏览器的 Web 测试，页面访问自动化，屏幕捕获，网络监控</p>
+<h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><p>下载源码安装，<a href="http://phantomjs.org/download.html" target="_blank" rel="external">下载地址</a>。</p>
+<p>解压并把解压缩的路径<code>D:\Python\phantomjs-2.1.1-windows\bin\</code><br>添加到环境变量中即可。</p>
+<p>Python 可以使用 <code>Selenium</code> 执行 <code>javascript</code> ，<code>Selenium</code> 可以让浏览器自动加载页面，获取需要的数据。<code>Selenium</code> 自己不带浏览器，可以使用第三方浏览器如Firefox，Chrome等，也可以使用headless浏览器如<code>PhantomJS</code>在后台执行。</p>
+<p>首先，在一般的浏览器都是像Chrome、Firefox之类的有图形界面的，但是这种GUI浏览器其实执行效率比较慢，因为要渲染出图形来，那么无GUI的浏览器的优势就有了，无GUI意味着占用资源少了，执行效率快，而爬虫中如果是选择了模拟浏览器的方式来做页面请求，那么把GUI的浏览器换成无GUI的浏览器是可以在一定程度上提高爬虫速度，减少资源消耗的，所以本例中也选择了<code>Selenium</code> + <code>Phantomjs</code> 的方式处理爬虫。</p>
+<h2 id="Selenium-PhantomJS-安装测试"><a href="#Selenium-PhantomJS-安装测试" class="headerlink" title="Selenium + PhantomJS 安装测试"></a>Selenium + PhantomJS 安装测试</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">from selenium import webdriver  </div><div class="line">driver = webdriver.PhantomJS(executable_path=r<span class="string">"D:\Python\phantomjs-2.1.1-windows\bin\phantomjs.exe"</span>)  </div><div class="line">driver.get(<span class="string">"http://www.baidu.com"</span>)  </div><div class="line">data = driver.title</div><div class="line">driver.save_screenshot(<span class="string">'baidu.png'</span>)  </div><div class="line"><span class="built_in">print</span>(data)</div></pre></td></tr></table></figure>
+<p>如果输出的结果为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">百度一下，你就知道</div></pre></td></tr></table></figure>
+<p>同时，在默认目录下生成百度的截图，则说明配置完成，接下来可以抓取页面了。</p>
+<p><img src="http://i.imgur.com/L2X6Kva.png" alt=""></p>
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/07/25/Hexo + Github 搭建静态博客/" itemprop="url">
-              
-                <span itemprop="name">Hexo + Github 搭建静态博客</span>
-              
-            </a>
-        
-      </h2>
+      
+    </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-25T10:00:00+08:00"
-              content="2017-07-25" >
-          07-25
-        </time>
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  
+    <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+      <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+      <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+        <span>赏</span>
+      </button>
+      <div id="QR" style="display: none;">
+        
+          <div id="wechat" style="display: inline-block">
+            <img id="wechat_qr" src="/images/wechat-reward-image.jpg" alt="Joshua Zou WeChat Pay"/>
+            <p>微信打赏</p>
+          </div>
+        
+        
+          <div id="alipay" style="display: inline-block">
+            <img id="alipay_qr" src="/images/alipay-reward-image.jpg" alt="Joshua Zou Alipay"/>
+            <p>支付宝打赏</p>
+          </div>
+        
       </div>
+    </div>
+  
 
-    </header>
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      Joshua Zou
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://joshuazou.cn/2017/08/01/Python爬取js加载的数据/" title="Python爬取需执行js的网页数据">http://joshuazou.cn/2017/08/01/Python爬取js加载的数据/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/JavaScripts/" rel="tag"># JavaScripts</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/25/Hexo + Github 搭建静态博客/" rel="next" title="Hexo + Github 搭建静态博客">
+                <i class="fa fa-chevron-left"></i> Hexo + Github 搭建静态博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -346,6 +566,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
 
         </div>
         
@@ -368,8 +594,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -555,6 +790,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题分析"><span class="nav-number">2.</span> <span class="nav-text">问题分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境配置"><span class="nav-number">3.</span> <span class="nav-text">环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#本地环境"><span class="nav-number">3.1.</span> <span class="nav-text">本地环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Selenium"><span class="nav-number">3.2.</span> <span class="nav-text">Selenium</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">3.2.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">3.2.2.</span> <span class="nav-text">安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Phantomjs"><span class="nav-number">3.3.</span> <span class="nav-text">Phantomjs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-1"><span class="nav-number">3.3.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-1"><span class="nav-number">3.3.2.</span> <span class="nav-text">安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Selenium-PhantomJS-安装测试"><span class="nav-number">3.4.</span> <span class="nav-text">Selenium + PhantomJS 安装测试</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -683,10 +934,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
@@ -712,6 +963,10 @@
   
     
 
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2140064"></script>
+      <!-- UY END -->
     
   
 
