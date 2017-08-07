@@ -3,7 +3,6 @@
 
 
     
-    
   <url>
     <loc>http://joshuazou.cn/2017/07/25/Hexo%20+%20Github%20%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2017-08-07T08:52:49.527Z</lastmod>
@@ -82,11 +81,11 @@
         
         <tag>blog</tag>
          
-        <tag>git</tag>
-         
         <tag>pelican</tag>
          
         <tag>python</tag>
+         
+        <tag>git</tag>
          
          
            
