@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://joshuazou.cn/"/>
-  <updated>2017-08-09T14:34:21.756Z</updated>
+  <updated>2017-08-17T06:05:57.737Z</updated>
   <id>http://joshuazou.cn/</id>
   
   <author>
@@ -14,6 +14,95 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>AWS-EC2云服务器搭建VPN/SS服务</title>
+    <link href="http://joshuazou.cn/2017/08/15/AWS-EC2%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAVPN%E4%B8%8ESS%E6%9C%8D%E5%8A%A1/"/>
+    <id>http://joshuazou.cn/2017/08/15/AWS-EC2云服务器搭建VPN与SS服务/</id>
+    <published>2017-08-15T04:20:00.000Z</published>
+    <updated>2017-08-17T06:05:57.737Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p><strong>前言</strong></p>
+<p>前段时间自己用的GreenVPN服务突然被告知被封了，无法提供翻墙服务了，日常查找一些资料需要FQ。之后我也尝试了很多方法，从最开始朋友给的vpn账号，到现在折腾亚马逊一年免费的ec2套餐自己搭建vpn/ss服务（没办法，生命不息，折腾不止），一来基本免费，二来可以自己动手搭建vpn/ss服务用起来相对更安全些。</p>
+</blockquote>
+<a id="more"></a>
+<p>开通<code>amazon aws/ec2</code>的教程网上很多，我这里就不详细写了，大家自行 google 吧，有几点需要注意的简单提一下：</p>
+<ol>
+<li>去 <code>https://aws.amazon.com/</code> 注册账号，你amazon.cn的账号并不能用；</li>
+<li>需要有一张可用的信用卡，开通的过程中会需要扣你1美刀的预付款作为验证信用卡可用性，验证过程是电话验证，所以还要保持你的手机可用；</li>
+<li>进入控制台之后，可能会纠结在哪个区申请ec2实例，可以去<a href="http://www.cloudping.info/" target="_blank" rel="external">http://www.cloudping.info/</a> 测试你到哪个机房延迟比较低，一般来说东京延迟最低；</li>
+<li>创建ec2的过程基本都是一路下一步，注意看清楚’free’标识就行；</li>
+<li>保存好生成的密钥（PEM）文件，以后ssh要用到。</li>
+</ol>
+<p>当你的一年免费ec2实例就申请好后，可以进行搭建vpn的操作了。</p>
+<p><strong>需注意</strong>:一年快到期前一定要取消这个服务，否则下一年就要收费了，并且亚马逊的服务还是很贵的，如果还想继续吃免费午餐的话重新注册一个新账号。</p>
+<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p><strong>服务器</strong>：AWS-EC2 Ubuntu 16.04.2 LTS</p>
+<p><strong>本地</strong>：win10/64位 </p>
+<h1 id="登录到ec2实例"><a href="#登录到ec2实例" class="headerlink" title="登录到ec2实例"></a>登录到ec2实例</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -i <span class="string">"/path/to/your/pem/file"</span> ubuntu@your.ec2.instance.at.compute.amazonaws.com</div></pre></td></tr></table></figure>
+<p>我在本地采用xmanager工具的xshell的图形化界面，使用SSH协议建立连接后可以打开图像操作界面，远程登陆Ubuntu的终端。</p>
+<h1 id="搭建VPN服务"><a href="#搭建VPN服务" class="headerlink" title="搭建VPN服务"></a>搭建VPN服务</h1><p>VPN具有先天跨平台的优势，各类操作系统都有自己的VPN功能，直接可以用，无需第三方客户端。</p>
+<p>但是VPN不够灵活，默认情况下，系统所有的流量都会从VPN走（很多VPN服务都可以设置全局变量或局部变量，即当设置成局部变量时，需要FQ时就会选用VPN服务，访问国内网站时就用本地网络，若是设置成全局变量，所有的流量都要从VPN走，这样有时候速度大打折扣），很多时候都是不必要的，比如你上个 youku，数据是从 youku 到东京机房，再从东京机房回到你的电脑，绕一大圈，不仅速度慢还浪费VPN流量。当然可以手动修改路由表，决定哪些流量走VPN哪些直连，但是这个工作量太大了。</p>
+<p>不过VPN够全能，ssh/ss做不了的VPN全都没问题，比如你安装了twitter的客户端，ssh/ss就没办法帮你翻了，但是VPN没问题，所以，VPN服务还是选择安装了。</p>
+<p>VPN包含PPTP,L2TP,OpenVPN,IPSec四种模式，这里选择安全性和实用性都还可以的PPTP模式。</p>
+<h2 id="安装-pptp-和防火墙"><a href="#安装-pptp-和防火墙" class="headerlink" title="安装 pptp 和防火墙"></a>安装 pptp 和防火墙</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install pptpd ufw</div></pre></td></tr></table></figure>
+<h2 id="修改pptpd-conf默认配置"><a href="#修改pptpd-conf默认配置" class="headerlink" title="修改pptpd.conf默认配置"></a>修改<code>pptpd.conf</code>默认配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo vim /etc/pptpd.conf</div><div class="line"><span class="comment">#在最后添加，去掉注释</span></div><div class="line">localip 192.168.0.1 <span class="comment">#主机ip</span></div><div class="line">remoteip 192.168.0.234-238,192.168.0.245 <span class="comment">#分配的ip段</span></div></pre></td></tr></table></figure>
+<h2 id="配置防火墙"><a href="#配置防火墙" class="headerlink" title="配置防火墙"></a>配置防火墙</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 允许SSH</span></div><div class="line">sudo ufw allow 22</div><div class="line"><span class="comment"># 允许HTTP</span></div><div class="line">sudo ufw allow 80</div><div class="line"><span class="comment"># 允许VPN</span></div><div class="line">sudo ufw allow 1723</div><div class="line"><span class="comment"># 启用UFW</span></div><div class="line">sudo ufw <span class="built_in">enable</span></div></pre></td></tr></table></figure>
+<p>注意，需要允许SSH端口，不然无法用SSH登录服务器。</p>
+<h2 id="设置-VPN-DNS"><a href="#设置-VPN-DNS" class="headerlink" title="设置 VPN DNS"></a>设置 <code>VPN DNS</code></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo vim /etc/ppp/pptpd-options</div><div class="line"><span class="comment">#添加，使用google dns</span></div><div class="line">ms-dns 8.8.8.8</div><div class="line">ms-dns 8.8.4.4</div></pre></td></tr></table></figure>
+<h2 id="添加VPN账号"><a href="#添加VPN账号" class="headerlink" title="添加VPN账号"></a>添加VPN账号</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">sudo vim /etc/ppp/chap-secrets</div><div class="line"></div><div class="line"><span class="comment"># Secrets for authentication using CHAP</span></div><div class="line"><span class="comment"># client        server  secret                  IP addresses</span></div><div class="line"><span class="comment"># 添加一行，依次为：用户名，服务，密码，限制ip：</span></div><div class="line">zou         pptpd   yourpassword            *</div></pre></td></tr></table></figure>
+<h2 id="设置ip转发"><a href="#设置ip转发" class="headerlink" title="设置ip转发"></a>设置ip转发</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sudo vim /etc/sysctl.conf</div><div class="line"><span class="comment"># 打开注释</span></div><div class="line">net.ipv4.ip_forward=1</div><div class="line"><span class="comment"># 使它立刻生效</span></div><div class="line">sudo sysctl -p</div></pre></td></tr></table></figure>
+<h2 id="添加-iptables-规则"><a href="#添加-iptables-规则" class="headerlink" title="添加 iptables 规则"></a>添加 iptables 规则</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 安装iptables</span></div><div class="line">sudo apt-get install iptables</div><div class="line"><span class="comment"># 建立一个 NAT，开启iptables转发（其中eth0是联网网卡，192.168.0.1/24是准备使用的网段与第2步的主机ip）</span></div><div class="line">sudo iptables -t nat -A POSTROUTING -s 192.168.0.0/24 -o eth0 -j MASQUERADE</div><div class="line"></div><div class="line"><span class="comment"># 将规则保存，使重启后规则不丢失</span></div><div class="line">sudo iptables-save &gt; /etc/iptables-rules</div></pre></td></tr></table></figure>
+<p>若此处提示：<code>-bash: /etc/iptables-rules: Permission denied</code> 则可使用root用户，命令：</p>
+<p>su - 进入root用户保存</p>
+<h2 id="编辑网卡文件，加载网卡时自动加载规则"><a href="#编辑网卡文件，加载网卡时自动加载规则" class="headerlink" title="编辑网卡文件，加载网卡时自动加载规则"></a>编辑网卡文件，加载网卡时自动加载规则</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">sudo vim  /etc/network/interfaces</div><div class="line"><span class="comment"># 末尾加入</span></div><div class="line">pre-up iptables-restore &lt;/etc/iptables-rules</div><div class="line"><span class="comment"># 设置MTU，防止包过大</span></div><div class="line">sudo iptables -A FORWARD -s 192.168.0.0/24 -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --<span class="built_in">set</span>-mss 1200</div><div class="line"><span class="comment"># 若设置了上条规则，记得保存</span></div><div class="line">sudo iptables-save &gt;/etc/iptables-rules</div></pre></td></tr></table></figure>
+<h2 id="修改防火墙UFW配置文件"><a href="#修改防火墙UFW配置文件" class="headerlink" title="修改防火墙UFW配置文件"></a>修改防火墙UFW配置文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vim /etc/default/ufw</div><div class="line"><span class="comment">#将“DEFAULT_FORWARD_POLICY” 的值改为 “ACCEPT”</span></div></pre></td></tr></table></figure>
+<p>macos 能连上，但没有任何收发包的问题，即能连接上VPN，不能上网：vpn高级里勾选发送全部流量</p>
+<h1 id="搭建SS服务"><a href="#搭建SS服务" class="headerlink" title="搭建SS服务"></a>搭建SS服务</h1><p>在国内搜索技术文章，如果使用baidu的话，你懂的。因此就转向google，但是由于众所周知的原因，我们无法访问google，同样可以用AWS-EC2服务器搭建ShadowSocks服务器，然后就可以愉快的FQ进行科学上网。</p>
+<p>ShadowSocks有如下特点：</p>
+<blockquote>
+<p>快速（异步I/O和事件驱动程序）<br>安全（所有的流量都经过加密算法加密，支持自定义算法）<br>支持移动客户端（专为移动设备和无线网络优化）<br>跨平台（可运行于包括PC，Mac，手机（Android和iOS）和路由器（OpenWrt）在内的多种平台上）<br>开源、易于维护</p>
+</blockquote>
+<h2 id="安装ShadowSocks"><a href="#安装ShadowSocks" class="headerlink" title="安装ShadowSocks"></a>安装ShadowSocks</h2><p>AWS服务器我选择的是Ubuntu系统。</p>
+<p><img src="http://i.imgur.com/sqcqvty.png" alt=""></p>
+<p>前面的过程省略，我是直接使用xshell工具连上云服务器进行操作的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 先装pip</span></div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install python-pip</div><div class="line"><span class="comment"># 安装shadowsocks</span></div><div class="line">sudo pip install shadowsocks</div><div class="line">sudo apt-get -y install python-m2crypto</div></pre></td></tr></table></figure>
+<h2 id="配置ShadowSocks"><a href="#配置ShadowSocks" class="headerlink" title="配置ShadowSocks"></a>配置ShadowSocks</h2><p>安装完毕后，可以查看使用ssserver命令进行查看。如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssserver -h</div></pre></td></tr></table></figure>
+<p>添加配置并编辑</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">sudo vim /etc/shadowsocks.json</div><div class="line"><span class="comment">#加入如下配置</span></div><div class="line">&#123;</div><div class="line">    <span class="string">"server"</span>:<span class="string">"0.0.0.0"</span>,</div><div class="line">    <span class="string">"server_port"</span>:8388, <span class="comment">#任意端口</span></div><div class="line">    <span class="string">"local_address"</span>:<span class="string">"127.0.0.1"</span>,</div><div class="line">    <span class="string">"local_port"</span>:1080,</div><div class="line">    <span class="string">"password"</span>:<span class="string">"你的密码"</span>,</div><div class="line">    <span class="string">"timeout"</span>:1000,</div><div class="line">    <span class="string">"method"</span>:<span class="string">"aes-256-cfb"</span>,</div><div class="line">    <span class="string">"fast_open"</span>:<span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输入完成后保存退出，然后启动服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssserver -c /etc/shadowsocks.json start</div></pre></td></tr></table></figure>
+<h2 id="安装客户端"><a href="#安装客户端" class="headerlink" title="安装客户端"></a>安装客户端</h2><p><a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="external">windows版本下载</a>，下载完毕后，双击Shadowsocks.exe。</p>
+<p>在弹出的窗口中，填入Shadowsocks服务器的IP、Shadowsocks服务器端口已经密码，就可以连接Shadowsocks服务器，如下：</p>
+<p><img src="http://i.imgur.com/HlNaVAp.png" alt=""></p>
+<p>正确连接Shadowsocks服务器后，我们就可以进行科学上网了。</p>
+<p><img src="http://i.imgur.com/bytd8vA.png" alt=""></p>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><ol>
+<li>使用SS服务的时候，先要SSH连接EC2服务器，启动服务，然后，再打开客户端</li>
+<li>暂停SS服务的时候，用命令 <code>ssserver -c /etc/shadowsocks.json stop</code> ，如果启动服务的时候显示<code>socket.error: [Errno 98] Address already in use</code>，则表示未正确关闭服务，端口仍被占用，此时用</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#查看端口被占用的进程</span></div><div class="line">netstat -tunlp</div><div class="line"><span class="comment">#关闭被占用进程</span></div><div class="line"><span class="built_in">kill</span> 进程号</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;前言&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;前段时间自己用的GreenVPN服务突然被告知被封了，无法提供翻墙服务了，日常查找一些资料需要FQ。之后我也尝试了很多方法，从最开始朋友给的vpn账号，到现在折腾亚马逊一年免费的ec2套餐自己搭建vpn/ss服务（没办法，生命不息，折腾不止），一来基本免费，二来可以自己动手搭建vpn/ss服务用起来相对更安全些。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="VPN/SS服务搭建" scheme="http://joshuazou.cn/categories/VPN-SS%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA/"/>
+    
+    
+      <category term="AWS-EC2" scheme="http://joshuazou.cn/tags/AWS-EC2/"/>
+    
+      <category term="VPN" scheme="http://joshuazou.cn/tags/VPN/"/>
+    
+      <category term="SS" scheme="http://joshuazou.cn/tags/SS/"/>
+    
+  </entry>
   
   <entry>
     <title>Python爬取需执行js的网页数据</title>
