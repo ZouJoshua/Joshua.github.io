@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://joshuazou.cn/"/>
-  <updated>2017-08-28T09:50:58.409Z</updated>
+  <updated>2017-08-28T10:02:19.283Z</updated>
   <id>http://joshuazou.cn/</id>
   
   <author>
@@ -20,12 +20,13 @@
     <link href="http://joshuazou.cn/2017/08/25/Windows%E4%B8%8B%E9%85%8D%E7%BD%AETensorFlow/"/>
     <id>http://joshuazou.cn/2017/08/25/Windows下配置TensorFlow/</id>
     <published>2017-08-25T07:16:03.000Z</published>
-    <updated>2017-08-28T09:50:58.409Z</updated>
+    <updated>2017-08-28T10:02:19.283Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p><strong>前言</strong></p>
+<p>现在人人都谈AI，不了解点深度学习，真实不好意思说自己是做DS的，所以打算也入坑了解下，不然以后怎么和别人吹（^_^），所以，今天先把深度学习框架环境搭建起来，现在本地学习下吧，所以本文记录了自己在 Win10上 搭建深度学习环境 TensorFlow 的一些步骤。</p>
 </blockquote>
-<h1 id="个人电脑配置及环境"><a href="#个人电脑配置及环境" class="headerlink" title="个人电脑配置及环境"></a>个人电脑配置及环境</h1><p>由于tensorflow配置需要CUDA 和CUDNN 版本匹配才能正常运行，而NVIDIA 更新这两个产品不同步，所以对于不同的CUDA版本，所需的cuDNN是固定的，因此时间不同，安装的版本是不一样的，而本博文更新日期为：<strong>2017/8/28</strong>，各位查看配置信息时，需注意此点。 </p>
+<h1 id="个人电脑配置及环境"><a href="#个人电脑配置及环境" class="headerlink" title="个人电脑配置及环境"></a>个人电脑配置及环境</h1><p>由于 TensorFlow 配置需要 CUDA 和 CUDNN 版本匹配才能正常运行，而 NVIDIA 更新这两个产品不同步，所以对于不同的 CUDA 版本，所需的 cuDNN 是固定的，因此时间不同，安装的版本是不一样的，而本博文更新日期为：<strong>2017/8/28</strong>，各位查看配置信息时，需注意此点。 </p>
 <h2 id="笔记本配置"><a href="#笔记本配置" class="headerlink" title="笔记本配置"></a>笔记本配置</h2><p><strong>OS</strong> ： Windows 10 64bit</p>
 <p><strong>CPU</strong> ： Intel Core i7-7500U(2.7GHz/L3 4M) </p>
 <p><strong>内存</strong> ： 8G</p>
@@ -65,8 +66,7 @@
     
       &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;前言&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&quot;个人电脑配置及环境&quot;&gt;&lt;a href=&quot;#个人电脑配置及环境&quot; class=&quot;headerlink&quot; title=&quot;个人电脑配置及环境&quot;&gt;&lt;/a&gt;个人电脑配
+&lt;p&gt;现在人人都谈AI，不了解点深度学习，真实不好意思说自己是做DS的，所以打算也入坑了解下，不然以后怎么和别人吹（^_^），所以，今天先把深度学习框架环境搭建起来，现在本地学习下吧，所以本文记录了自
     
     </summary>
     
@@ -86,7 +86,7 @@
     <link href="http://joshuazou.cn/2017/08/22/%E5%85%B3%E4%BA%8ENumpy%E9%80%9F%E5%BA%A6%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/"/>
     <id>http://joshuazou.cn/2017/08/22/关于Numpy速度的一些思考/</id>
     <published>2017-08-22T02:06:11.340Z</published>
-    <updated>2017-08-22T04:07:12.741Z</updated>
+    <updated>2017-08-28T10:04:36.702Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p><strong>前言</strong></p>

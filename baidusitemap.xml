@@ -4,8 +4,30 @@
 
     
   <url>
+    <loc>http://joshuazou.cn/2017/08/22/%E5%85%B3%E4%BA%8ENumpy%E9%80%9F%E5%BA%A6%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/</loc>
+    <lastmod>2017-08-28T10:04:36.702Z</lastmod>
+    <data>
+        <display>
+        <title>关于Numpy速度的一些思考</title>
+        <pubTime>2017-08-22T02:06:11.340Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>Numpy</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python库" url="http://joshuazou.cn/categories/Python%E5%BA%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://joshuazou.cn/2017/08/25/Windows%E4%B8%8B%E9%85%8D%E7%BD%AETensorFlow/</loc>
-    <lastmod>2017-08-28T09:50:58.409Z</lastmod>
+    <lastmod>2017-08-28T10:02:19.283Z</lastmod>
     <data>
         <display>
         <title>Windows下配置TensorFlow</title>
@@ -21,28 +43,6 @@
            
              
               <breadCrumb title="TensorFlow" url="http://joshuazou.cn/categories/TensorFlow/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://joshuazou.cn/2017/08/22/%E5%85%B3%E4%BA%8ENumpy%E9%80%9F%E5%BA%A6%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/</loc>
-    <lastmod>2017-08-22T04:07:12.741Z</lastmod>
-    <data>
-        <display>
-        <title>关于Numpy速度的一些思考</title>
-        <pubTime>2017-08-22T02:06:11.340Z</pubTime>
-        
-        <tag>Python</tag>
-         
-        <tag>Numpy</tag>
-         
-         
-           
-             
-              <breadCrumb title="Python库" url="http://joshuazou.cn/categories/Python%E5%BA%93/"/>
           
         </display>
     </data>

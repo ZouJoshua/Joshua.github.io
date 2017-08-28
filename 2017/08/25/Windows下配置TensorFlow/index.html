@@ -95,20 +95,20 @@
 
 
 
-<meta name="description" content="前言  个人电脑配置及环境由于tensorflow配置需要CUDA 和CUDNN 版本匹配才能正常运行，而NVIDIA 更新这两个产品不同步，所以对于不同的CUDA版本，所需的cuDNN是固定的，因此时间不同，安装的版本是不一样的，而本博文更新日期为：2017/8/28，各位查看配置信息时，需注意此点。  笔记本配置OS ： Windows 10 64bit CPU ： Intel Core i">
+<meta name="description" content="前言 现在人人都谈AI，不了解点深度学习，真实不好意思说自己是做DS的，所以打算也入坑了解下，不然以后怎么和别人吹（^_^），所以，今天先把深度学习框架环境搭建起来，现在本地学习下吧，所以本文记录了自己在 Win10上 搭建深度学习环境 TensorFlow 的一些步骤。  个人电脑配置及环境由于 TensorFlow 配置需要 CUDA 和 CUDNN 版本匹配才能正常运行，而 NVIDIA">
 <meta name="keywords" content="深度学习,机器学习,数据挖掘">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Windows下配置TensorFlow">
 <meta property="og:url" content="http://joshuazou.cn/2017/08/25/Windows下配置TensorFlow/index.html">
 <meta property="og:site_name" content="心安即行 自在欢喜">
-<meta property="og:description" content="前言  个人电脑配置及环境由于tensorflow配置需要CUDA 和CUDNN 版本匹配才能正常运行，而NVIDIA 更新这两个产品不同步，所以对于不同的CUDA版本，所需的cuDNN是固定的，因此时间不同，安装的版本是不一样的，而本博文更新日期为：2017/8/28，各位查看配置信息时，需注意此点。  笔记本配置OS ： Windows 10 64bit CPU ： Intel Core i">
+<meta property="og:description" content="前言 现在人人都谈AI，不了解点深度学习，真实不好意思说自己是做DS的，所以打算也入坑了解下，不然以后怎么和别人吹（^_^），所以，今天先把深度学习框架环境搭建起来，现在本地学习下吧，所以本文记录了自己在 Win10上 搭建深度学习环境 TensorFlow 的一些步骤。  个人电脑配置及环境由于 TensorFlow 配置需要 CUDA 和 CUDNN 版本匹配才能正常运行，而 NVIDIA">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://i.imgur.com/9y3fO0R.png">
 <meta property="og:image" content="http://i.imgur.com/Ylfc0ui.png">
-<meta property="og:updated_time" content="2017-08-28T09:50:58.409Z">
+<meta property="og:updated_time" content="2017-08-28T10:02:19.283Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Windows下配置TensorFlow">
-<meta name="twitter:description" content="前言  个人电脑配置及环境由于tensorflow配置需要CUDA 和CUDNN 版本匹配才能正常运行，而NVIDIA 更新这两个产品不同步，所以对于不同的CUDA版本，所需的cuDNN是固定的，因此时间不同，安装的版本是不一样的，而本博文更新日期为：2017/8/28，各位查看配置信息时，需注意此点。  笔记本配置OS ： Windows 10 64bit CPU ： Intel Core i">
+<meta name="twitter:description" content="前言 现在人人都谈AI，不了解点深度学习，真实不好意思说自己是做DS的，所以打算也入坑了解下，不然以后怎么和别人吹（^_^），所以，今天先把深度学习框架环境搭建起来，现在本地学习下吧，所以本文记录了自己在 Win10上 搭建深度学习环境 TensorFlow 的一些步骤。  个人电脑配置及环境由于 TensorFlow 配置需要 CUDA 和 CUDNN 版本匹配才能正常运行，而 NVIDIA">
 <meta name="twitter:image" content="http://i.imgur.com/9y3fO0R.png">
 
 
@@ -361,7 +361,7 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-08-28T17:50:58+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2017-08-28T18:02:19+08:00">
                 2017-08-28
               </time>
             
@@ -428,8 +428,9 @@
       
         <blockquote>
 <p><strong>前言</strong></p>
+<p>现在人人都谈AI，不了解点深度学习，真实不好意思说自己是做DS的，所以打算也入坑了解下，不然以后怎么和别人吹（^_^），所以，今天先把深度学习框架环境搭建起来，现在本地学习下吧，所以本文记录了自己在 Win10上 搭建深度学习环境 TensorFlow 的一些步骤。</p>
 </blockquote>
-<h1 id="个人电脑配置及环境"><a href="#个人电脑配置及环境" class="headerlink" title="个人电脑配置及环境"></a>个人电脑配置及环境</h1><p>由于tensorflow配置需要CUDA 和CUDNN 版本匹配才能正常运行，而NVIDIA 更新这两个产品不同步，所以对于不同的CUDA版本，所需的cuDNN是固定的，因此时间不同，安装的版本是不一样的，而本博文更新日期为：<strong>2017/8/28</strong>，各位查看配置信息时，需注意此点。 </p>
+<h1 id="个人电脑配置及环境"><a href="#个人电脑配置及环境" class="headerlink" title="个人电脑配置及环境"></a>个人电脑配置及环境</h1><p>由于 TensorFlow 配置需要 CUDA 和 CUDNN 版本匹配才能正常运行，而 NVIDIA 更新这两个产品不同步，所以对于不同的 CUDA 版本，所需的 cuDNN 是固定的，因此时间不同，安装的版本是不一样的，而本博文更新日期为：<strong>2017/8/28</strong>，各位查看配置信息时，需注意此点。 </p>
 <h2 id="笔记本配置"><a href="#笔记本配置" class="headerlink" title="笔记本配置"></a>笔记本配置</h2><p><strong>OS</strong> ： Windows 10 64bit</p>
 <p><strong>CPU</strong> ： Intel Core i7-7500U(2.7GHz/L3 4M) </p>
 <p><strong>内存</strong> ： 8G</p>
