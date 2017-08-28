@@ -4,6 +4,52 @@
 
     
   <url>
+    <loc>http://joshuazou.cn/2017/08/25/Windows%E4%B8%8B%E9%85%8D%E7%BD%AETensorFlow/</loc>
+    <lastmod>2017-08-28T09:50:58.409Z</lastmod>
+    <data>
+        <display>
+        <title>Windows下配置TensorFlow</title>
+        <pubTime>2017-08-25T07:16:03.000Z</pubTime>
+        
+        <tag>深度学习</tag>
+         
+        <tag>机器学习</tag>
+         
+        <tag>数据挖掘</tag>
+         
+         
+           
+             
+              <breadCrumb title="TensorFlow" url="http://joshuazou.cn/categories/TensorFlow/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://joshuazou.cn/2017/08/22/%E5%85%B3%E4%BA%8ENumpy%E9%80%9F%E5%BA%A6%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/</loc>
+    <lastmod>2017-08-22T04:07:12.741Z</lastmod>
+    <data>
+        <display>
+        <title>关于Numpy速度的一些思考</title>
+        <pubTime>2017-08-22T02:06:11.340Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>Numpy</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python库" url="http://joshuazou.cn/categories/Python%E5%BA%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://joshuazou.cn/2017/08/15/AWS-EC2%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAVPN%E4%B8%8ESS%E6%9C%8D%E5%8A%A1/</loc>
     <lastmod>2017-08-17T06:05:57.737Z</lastmod>
     <data>

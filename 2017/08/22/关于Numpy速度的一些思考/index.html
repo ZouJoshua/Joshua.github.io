@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hello world!" />
+  <meta name="keywords" content="Python,Numpy," />
 
 
 
@@ -95,16 +95,24 @@
 
 
 
-<meta name="description" content="数据科学、数据挖掘分析博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="心安即行 自在欢喜">
-<meta property="og:url" content="http://joshuazou.cn/tags/test/index.html">
+<meta name="description" content="前言 对于 Python 语言，听到吐槽最多的就是速度了，因为 Python 执行代码的时候会执行很多的 ‘check’ 功能，比如：b=1；a=b/0.5 ，这个看似简单的运算，在计算机内部，b 首先要从一个整数 integer 转化成浮点数 float ，才能执行下一步。而做数据挖掘，机器学习或数据分析，用到最多的就是 Python 的科学计算库了，Numpy 就是其中常用的一个，它能把 P">
+<meta name="keywords" content="Python,Numpy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于Numpy速度的一些思考">
+<meta property="og:url" content="http://joshuazou.cn/2017/08/22/关于Numpy速度的一些思考/index.html">
 <meta property="og:site_name" content="心安即行 自在欢喜">
-<meta property="og:description" content="数据科学、数据挖掘分析博客">
+<meta property="og:description" content="前言 对于 Python 语言，听到吐槽最多的就是速度了，因为 Python 执行代码的时候会执行很多的 ‘check’ 功能，比如：b=1；a=b/0.5 ，这个看似简单的运算，在计算机内部，b 首先要从一个整数 integer 转化成浮点数 float ，才能执行下一步。而做数据挖掘，机器学习或数据分析，用到最多的就是 Python 的科学计算库了，Numpy 就是其中常用的一个，它能把 P">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://i.imgur.com/WKqJ8Jn.png">
+<meta property="og:image" content="http://i.imgur.com/fBN6Svf.png">
+<meta property="og:image" content="http://i.imgur.com/WwunczA.png">
+<meta property="og:image" content="http://i.imgur.com/7dd4z05.png">
+<meta property="og:image" content="http://i.imgur.com/ITsbq7r.png">
+<meta property="og:updated_time" content="2017-08-22T04:07:12.741Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="心安即行 自在欢喜">
-<meta name="twitter:description" content="数据科学、数据挖掘分析博客">
+<meta name="twitter:title" content="关于Numpy速度的一些思考">
+<meta name="twitter:description" content="前言 对于 Python 语言，听到吐槽最多的就是速度了，因为 Python 执行代码的时候会执行很多的 ‘check’ 功能，比如：b=1；a=b/0.5 ，这个看似简单的运算，在计算机内部，b 首先要从一个整数 integer 转化成浮点数 float ，才能执行下一步。而做数据挖掘，机器学习或数据分析，用到最多的就是 Python 的科学计算库了，Numpy 就是其中常用的一个，它能把 P">
+<meta name="twitter:image" content="http://i.imgur.com/WKqJ8Jn.png">
 
 
 
@@ -132,13 +140,13 @@
 
 
 
-  <link rel="canonical" href="http://joshuazou.cn/tags/test/"/>
+  <link rel="canonical" href="http://joshuazou.cn/2017/08/22/关于Numpy速度的一些思考/"/>
 
 
 
 
 
-  <title>标签: test | 心安即行 自在欢喜</title>
+  <title>关于Numpy速度的一些思考 | 心安即行 自在欢喜</title>
   
 
 
@@ -163,7 +171,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -301,44 +309,269 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h1>test<small>标签</small>
-      </h1>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://joshuazou.cn/2017/08/22/关于Numpy速度的一些思考/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joshua Zou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心安即行 自在欢喜">
+    </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">关于Numpy速度的一些思考</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-22T10:06:11+08:00">
+                2017-08-22
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-08-22T12:07:12+08:00">
+                2017-08-22
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python库/" itemprop="url" rel="index">
+                    <span itemprop="name">Python库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/08/22/关于Numpy速度的一些思考/" class="leancloud_visitors" data-flag-title="关于Numpy速度的一些思考">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <blockquote>
+<p><strong>前言</strong></p>
+<p>对于 Python 语言，听到吐槽最多的就是速度了，因为 Python 执行代码的时候会执行很多的 ‘check’ 功能，比如：<code>b=1；a=b/0.5</code> ，这个看似简单的运算，在计算机内部，b 首先要从一个整数 integer 转化成浮点数 float ，才能执行下一步。而做数据挖掘，机器学习或数据分析，用到最多的就是 Python 的科学计算库了，Numpy 就是其中常用的一个，它能把 Python 和高性能的 C 语言合并在一起，在我们调用 Numpy 的时候，其实调用了很多 C 语言，而不是纯 Python，而本文将对 Numpy 最近的思考做个小结。</p>
+</blockquote>
+<p>#Numpy Array的数据结构</p>
+<p>其实 Numpy 就是 C 的逻辑，创建存储容器 ‘Array’ 的时候是寻找内存上的一连串区域来存放，而Python存放的时候不是连续的区域，这使得Python在索引这个容器里的数据不是那么有效率。下图是来自 <a href="https://jakevdp.github.io/blog/2014/05/09/why-python-is-slow/" target="_blank" rel="external">Why Python is Slow: Looking Under the Hood</a>， 数据存储结构很好的证明了效率问题。</p>
+<p><img src="http://i.imgur.com/WKqJ8Jn.png" alt=""></p>
+<p>运用 Numpy 的时候，我们通常不是用一个一维 Array 来存放数据，而是用二维或者三维的块来存放。因为 Numpy 快速的矩阵相乘运算，能将乘法运算分配到计算机中的多个核，让运算并行，而并行运算大大加速了运算速度，这也是 Numpy 为什么受人喜欢的一个原因。其实不管是1D/2D/3D 的 Array，从根本上，它都是一个 1D array!</p>
+<p><img src="http://i.imgur.com/fBN6Svf.png" alt=""></p>
+<p>我们常用的 2D Array，在计算机内存里是存储在一个连续空间上的，而对于这个连续空间，我们如果创建 Array 的方式不同，在这个连续空间上的排列顺序也有不同。在 Numpy 中，创建 2D Array 的默认方式是 “C-type” 以 row 为主在内存中排列，而如果是 “Fortran” 的方式创建的，就是以 column 为主在内存中排列。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">col_array = np.zeros((5,5), order=<span class="string">'C'</span>)    <span class="comment"># C-type</span></div><div class="line">row_array = np.zeros((5,5), order=<span class="string">'F'</span>)    <span class="comment"># Fortran</span></div></pre></td></tr></table></figure>
+<p>#合并操作</p>
+<p>当计算中涉及合并矩阵，不同形式的矩阵创建方式会影响时间。因为在 Numpy 中的矩阵合并等，都是发生在一维空间里，不是我们想象的二维空间中!</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">a = np.zeros((200, 200), order=<span class="string">'C'</span>)</div><div class="line">b = np.zeros((200, 200), order=<span class="string">'F'</span>)</div><div class="line">N = 9999</div><div class="line"></div><div class="line">def f1(a):</div><div class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(N):</div><div class="line">        np.concatenate((a, a), axis=0)</div><div class="line"></div><div class="line">def f2(b):</div><div class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(N):</div><div class="line">        np.concatenate((b, b), axis=0)</div><div class="line"></div><div class="line">t0 = time.time()</div><div class="line">f1(a)</div><div class="line">t1 = time.time()</div><div class="line">f2(b)</div><div class="line">t2 = time.time()</div><div class="line"></div><div class="line"><span class="built_in">print</span>((t1-t0)/N)     <span class="comment"># 2.8277459246168757e-05</span></div><div class="line"><span class="built_in">print</span>((t2-t1)/N)     <span class="comment"># 2.8879836340262445e-05</span></div></pre></td></tr></table></figure>
+<p>从时间上看，相差不是很明显，这与计算机的配置有关，本人计算机配置为：</p>
+<p><img src="http://i.imgur.com/WwunczA.png" alt=""></p>
+<p>在另一台比较旧的电脑上测试同样的数据，所需时间为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">print</span>((t1-t0)/N)     <span class="comment"># 2.1623800439660055e-03</span></div><div class="line"><span class="built_in">print</span>((t2-t1)/N)     <span class="comment"># 3.7443810003330046e-03</span></div></pre></td></tr></table></figure>
+<p>旧电脑配置为：</p>
+<p><img src="http://i.imgur.com/7dd4z05.png" alt=""></p>
+<p>可见时间效率上相差还是比较明显的。row 为主的存储方式，如果在 row 的方向上合并矩阵，将会更快。根据 C 语言的存储结构，完成合并操作，在 1D array 中，直接再加一个 row 放在 1D array， 所以在上面的测试中， f1 速度要更快。 但是在以 column 为主的系统中，往 1D array 后面加 row 的规则变复杂了，消耗的时间也变长。如果以 axis=1 的方式合并，”F” 方式的 f2 将会比 “C” 方式的 f1 更好。</p>
+<p>有时候犯懒会直接使用 <code>np.stack</code> 来代替 <code>np.concatenate</code>， 因为这样可以少写一点代码，不过使用上面的形式，通过上面的测试发现为了速度，推荐还是尽量使用 <code>np.concatenate</code>，所以在做操作前看自己要在哪个 axis 上的操作多，然后再创建合适于自己的矩阵形式 (“C-type”/“Fortran”)。</p>
+<p>#copy慢 view快</p>
+<p>在 Numpy 中，<code>copy</code> 和 <code>view. copy</code> 顾名思义，会将数据 <code>copy</code> 出来存放在内存中另一个地方，而 <code>view</code> 则是不 <code>copy</code> 数据，直接取源数据的索引部分。下图来自 <a href="https://www.dataquest.io/blog/settingwithcopywarning/" target="_blank" rel="external">Understanding SettingwithCopyWarning in pandas</a>。</p>
+<p><img src="http://i.imgur.com/ITsbq7r.png" alt=""></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">a = np.arange(1, 7).reshape((3,2))</div><div class="line">a_view = a[:2]</div><div class="line">a_copy = a[:2].copy()</div><div class="line"></div><div class="line">a_copy[1,1] = 0</div><div class="line"><span class="built_in">print</span>(a)</div><div class="line"></div><div class="line">a_view[1,1] = 0</div><div class="line"><span class="built_in">print</span>(a)</div></pre></td></tr></table></figure>
+<p>a_view 的东西全部都是 a 的东西，动 a_view 的任何地方，a 都会被动到，因为他们在内存中的位置是一模一样的，本质上就是自己，而 a_copy 则是将 a copy 了一份，然后把 a_copy 放在内存中的另外的地方，这样改变 a_copy，a 是不会被改变的。</p>
+<p>#矩阵展平</p>
+<p>有时候要把一个矩阵展平, 用到 <code>np.flatten()</code> 或者 <code>np.ravel()</code>， ravel 返回的是一个 view （如果用 ravel，需要 copy 的时候才会被 copy ，我想这个时候可能是把 ravel 里面 order 转换的时候，如 ‘C-type’ -&gt; ‘Fortran’）， 而 flatten 返回的总是一个 copy，所以相比于 flatten， ravel 速度更快。</p>
+<p>#选择数据</p>
+<p>选择数据的时候，常会用到 view 或者 copy 的形式，如果能用到 view 的，尽量用 view，避免 copy 数据。</p>
+<h2 id="使用-np-take-替代用-index-选数据的方法"><a href="#使用-np-take-替代用-index-选数据的方法" class="headerlink" title="使用 np.take(), 替代用 index 选数据的方法"></a>使用 <code>np.take()</code>, 替代用 index 选数据的方法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">a = np.random.rand(1000000, 10)</div><div class="line">N = 99</div><div class="line">indices = np.random.randint(0, 1000000, size=10000)</div><div class="line"></div><div class="line">def f1(a):</div><div class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(N):</div><div class="line">        _ = np.take(a, indices, axis=0)</div><div class="line"></div><div class="line">def f2(b):</div><div class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(N):</div><div class="line">        _ = b[indices]</div></pre></td></tr></table></figure>
+<h2 id="使用-np-compress-替代用-mask-选数据的方法"><a href="#使用-np-compress-替代用-mask-选数据的方法" class="headerlink" title="使用 np.compress(), 替代用 mask 选数据的方法"></a>使用 <code>np.compress()</code>, 替代用 mask 选数据的方法</h2><p><code>a_copy2 = a[[True, True], [False, True]]</code> 这种就是用 TRUE， FALSE 来选择数据的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mask = a[:, 0] &lt; 0.5</div><div class="line">def f1(a):</div><div class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(N):</div><div class="line">        _ = np.compress(mask, a, axis=0)</div><div class="line"></div><div class="line">def f2(b):</div><div class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(N):</div><div class="line">        _ = b[mask]</div></pre></td></tr></table></figure>
+      
+    </div>
 
-      <h2 class="post-title">
+    <div>
+      
         
-            <a class="post-title-link" href="/2017/01/11/Test/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
-        
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-01-11T14:26:33+08:00"
-              content="2017-01-11" >
-          01-11
-        </time>
+      
+    </div>
+
+    <div>
+      
+        
+  
+    <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+      <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+      <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+        <span>赏</span>
+      </button>
+      <div id="QR" style="display: none;">
+        
+          <div id="wechat" style="display: inline-block">
+            <img id="wechat_qr" src="/images/wechat-reward-image.jpg" alt="Joshua Zou WeChat Pay"/>
+            <p>微信打赏</p>
+          </div>
+        
+        
+          <div id="alipay" style="display: inline-block">
+            <img id="alipay_qr" src="/images/alipay-reward-image.jpg" alt="Joshua Zou Alipay"/>
+            <p>支付宝打赏</p>
+          </div>
+        
       </div>
+    </div>
+  
 
-    </header>
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      Joshua Zou
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://joshuazou.cn/2017/08/22/关于Numpy速度的一些思考/" title="关于Numpy速度的一些思考">http://joshuazou.cn/2017/08/22/关于Numpy速度的一些思考/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/Numpy/" rel="tag"># Numpy</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/15/AWS-EC2云服务器搭建VPN与SS服务/" rel="next" title="AWS-EC2云服务器搭建VPN/SS服务">
+                <i class="fa fa-chevron-left"></i> AWS-EC2云服务器搭建VPN/SS服务
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/25/Windows下配置TensorFlow/" rel="prev" title="Windows下配置TensorFlow">
+                Windows下配置TensorFlow <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -346,6 +579,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
 
         </div>
         
@@ -368,8 +607,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -555,6 +803,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-np-take-替代用-index-选数据的方法"><span class="nav-number">1.</span> <span class="nav-text">使用 np.take(), 替代用 index 选数据的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-np-compress-替代用-mask-选数据的方法"><span class="nav-number">2.</span> <span class="nav-text">使用 np.compress(), 替代用 mask 选数据的方法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -683,10 +947,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
@@ -712,6 +976,10 @@
   
     
 
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2140064"></script>
+      <!-- UY END -->
     
   
 
