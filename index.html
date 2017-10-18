@@ -360,8 +360,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-08-28T18:11:41+08:00">
-                2017-08-28
+              <time title="更新于" itemprop="dateModified" datetime="2017-09-20T09:47:30+08:00">
+                2017-09-20
               </time>
             
           </span>
@@ -431,47 +431,17 @@
           </div>
         
         
-          
-            <blockquote>
+          <blockquote>
 <p><strong>前言</strong></p>
-<p>现在人人都谈AI，不了解点深度学习，真实不好意思说自己是做DS的，所以打算也入坑了解下，不然以后怎么和别人吹（^_^），所以，今天先把深度学习框架环境搭建起来，现在本地学习下吧，所以本文记录了自己在 Win10上 搭建深度学习环境 TensorFlow 的一些步骤。</p>
+<p>现在人人都谈AI，不了解点深度学习，真实不好意思说自己是做DS的，所以打算也入坑了解下，不然以后怎么和别人吹（^_^），所以今天先深度学习框架环境搭建起来，在本地学习下，本博文记录了自己在 Win10 上搭建深度学习环境 TensorFlow 的一些步骤及遇到的一些问题。</p>
 </blockquote>
-<h1 id="个人电脑配置及环境"><a href="#个人电脑配置及环境" class="headerlink" title="个人电脑配置及环境"></a>个人电脑配置及环境</h1><p>由于 TensorFlow 配置需要 CUDA 和 CUDNN 版本匹配才能正常运行，而 NVIDIA 更新这两个产品不同步，所以对于不同的 CUDA 版本，所需的 cuDNN 是固定的，因此时间不同，安装的版本是不一样的，而本博文更新日期为：<strong>2017/8/28</strong>，各位查看配置信息时，需注意此点。 </p>
-<h2 id="笔记本配置"><a href="#笔记本配置" class="headerlink" title="笔记本配置"></a>笔记本配置</h2><p><strong>OS</strong> ： Windows 10 64bit</p>
-<p><strong>CPU</strong> ： Intel Core i7-7500U(2.7GHz/L3 4M) </p>
-<p><strong>内存</strong> ： 8G</p>
-<p><strong>显卡</strong> ： NVIDIA GeForce 940MX</p>
-<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><p><strong>Python</strong> ： Python 3.5.2 |Continuum Analytics, Inc.| (default, Jul  5 2016, 11:41:13) [MSC v.1900 64 bit (AMD64)] on win32</p>
-<p><strong>TensorFlow</strong> ： 1.3.0</p>
-<p><strong>CUDA</strong> ： Cuda compilation tools, release 8.0, V8.0.60</p>
-<p><strong>cuDNN</strong> ： cuDNN v6.0 (April 27, 2017), for CUDA 8.0</p>
-<h3 id="创建虚拟环境"><a href="#创建虚拟环境" class="headerlink" title="创建虚拟环境"></a>创建虚拟环境</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 创建tensorflow虚拟环境，自定义路径，（TensorFlow在Windows上只支持64位Python3.5）</span></div><div class="line">conda create -n tensorflow python=3.5.2</div></pre></td></tr></table></figure>
-<h1 id="TensorFlow-安装"><a href="#TensorFlow-安装" class="headerlink" title="TensorFlow 安装"></a>TensorFlow 安装</h1><p>确定安装那个版本的TensorFlow：</p>
-<ul>
-<li><p>仅支持CPU运算版本：</p>
-<p>  如果电脑的系统没有NVIDIA显卡，不支持GPU，那么必须安装这个版本。</p>
-</li>
-<li><p>支持GPU运算版本：</p>
-<p>  TensorFlow程序在GPU下运行比在CPU下运行明显快很多，但是需要 CUDA 和 cuDNN 的支持，性能还可以建议安装此版本，在 <a href="https://developer.nvidia.com/cuda-gpus" target="_blank" rel="external">这里</a> 确认你的显卡支持 CUDA。</p>
-</li>
-</ul>
-<p>虽然我的NVIDIA显卡并不特别出色，计算能力5.0，从计算效率上考虑还是打算安装GPU运算版本。如果查看自己的电脑支持GPU，那么可以开始下载 CUDA 和 cuDNN 的安装包了，注意版本号分别是 CUDA 8.0 和 cuDNN 6.0（由于 TensorFlow 不同版本有变化，5.1 已不再适用新版本）。</p>
-<h2 id="安装-CUDA-和-CUDNN-驱动"><a href="#安装-CUDA-和-CUDNN-驱动" class="headerlink" title="安装 CUDA 和 CUDNN 驱动"></a>安装 CUDA 和 CUDNN 驱动</h2><ol>
-<li><p>CUDA <a href="https://developer.nvidia.com/cuda-downloads" target="_blank" rel="external">安装</a></p>
-<p> 下载完成可以进行安装，exe 文件就是 CUDA8 的安装程序，直接双击执行（尽量关闭360，如果不想关闭，弹出修改程序的内容的话就点允许，否则安装会出问题），安装完之后系统变量会自动添加上。<br> 测试是否安装成功，打开CMD窗口，命令行输入 <code>nvcc -V</code> 。</p>
-<p> <img src="http://i.imgur.com/9y3fO0R.png" alt=""></p>
-</li>
-<li><p>CUDNN <a href="https://developer.nvidia.com/cudnn" target="_blank" rel="external">安装</a></p>
-<p> Google 于 2017 年 8 月 17 日左右发布了 TensorFlow 1.3，该版本不再支持 cuDNN 5，开始支持 cuDNN 6，并预计在 TensorFlow 1.4 支持 cuDNN 7，所以说当你使用 pip 安装最新版的时候，请使用 cuDNN 6，否则会出现 <code>ImportError: DLL load failed: 找不到指定的模块。</code> 和 <code>ImportError: No module named &#39;_pywrap_tensorflow_internal&#39;</code> 的问题。</p>
-<p> 当下载完成后，解压后将文件复制进入<code>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0</code>，并将该目录下的这三个目录加进 Path 环境变量</p>
-</li>
-</ol>
-<h2 id="安装-TensorFlow"><a href="#安装-TensorFlow" class="headerlink" title="安装 TensorFlow"></a>安装 TensorFlow</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 进入tensorflow环境，并激活环境</span></div><div class="line"><span class="built_in">cd</span> tensorflow/scripts </div><div class="line">activate</div><div class="line"><span class="comment"># 安装 tensorflow（GPU版本）</span></div><div class="line">pip install tensorflow-gpu</div></pre></td></tr></table></figure>
-<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">import tensorflow as tf</div><div class="line"></div><div class="line">a = tf.random_normal((100, 100))</div><div class="line">b = tf.random_normal((100, 500))</div><div class="line">c = tf.matmul(a, b)</div><div class="line">sess = tf.InteractiveSession()</div><div class="line">sess.run(c)</div></pre></td></tr></table></figure>
-<p><img src="http://i.imgur.com/Ylfc0ui.png" alt=""></p>
-<p>至此，安装就完成了，接下来就可以着手项目练练手了（PS：暴露了我的渣显卡，请勿吐槽。）。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/25/Windows下配置TensorFlow/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -560,8 +530,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-08-28T18:04:36+08:00">
-                2017-08-28
+              <time title="更新于" itemprop="dateModified" datetime="2017-09-20T09:47:07+08:00">
+                2017-09-20
               </time>
             
           </span>
@@ -631,42 +601,17 @@
           </div>
         
         
-          
-            <blockquote>
+          <blockquote>
 <p><strong>前言</strong></p>
 <p>对于 Python 语言，听到吐槽最多的就是速度了，因为 Python 执行代码的时候会执行很多的 ‘check’ 功能，比如：<code>b=1；a=b/0.5</code> ，这个看似简单的运算，在计算机内部，b 首先要从一个整数 integer 转化成浮点数 float ，才能执行下一步。而做数据挖掘，机器学习或数据分析，用到最多的就是 Python 的科学计算库了，Numpy 就是其中常用的一个，它能把 Python 和高性能的 C 语言合并在一起，在我们调用 Numpy 的时候，其实调用了很多 C 语言，而不是纯 Python，而本文将对 Numpy 最近的思考做个小结。</p>
 </blockquote>
-<p>#Numpy Array的数据结构</p>
-<p>其实 Numpy 就是 C 的逻辑，创建存储容器 ‘Array’ 的时候是寻找内存上的一连串区域来存放，而Python存放的时候不是连续的区域，这使得Python在索引这个容器里的数据不是那么有效率。下图是来自 <a href="https://jakevdp.github.io/blog/2014/05/09/why-python-is-slow/" target="_blank" rel="external">Why Python is Slow: Looking Under the Hood</a>， 数据存储结构很好的证明了效率问题。</p>
-<p><img src="http://i.imgur.com/WKqJ8Jn.png" alt=""></p>
-<p>运用 Numpy 的时候，我们通常不是用一个一维 Array 来存放数据，而是用二维或者三维的块来存放。因为 Numpy 快速的矩阵相乘运算，能将乘法运算分配到计算机中的多个核，让运算并行，而并行运算大大加速了运算速度，这也是 Numpy 为什么受人喜欢的一个原因。其实不管是1D/2D/3D 的 Array，从根本上，它都是一个 1D array!</p>
-<p><img src="http://i.imgur.com/fBN6Svf.png" alt=""></p>
-<p>我们常用的 2D Array，在计算机内存里是存储在一个连续空间上的，而对于这个连续空间，我们如果创建 Array 的方式不同，在这个连续空间上的排列顺序也有不同。在 Numpy 中，创建 2D Array 的默认方式是 “C-type” 以 row 为主在内存中排列，而如果是 “Fortran” 的方式创建的，就是以 column 为主在内存中排列。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">col_array = np.zeros((5,5), order=<span class="string">'C'</span>)    <span class="comment"># C-type</span></div><div class="line">row_array = np.zeros((5,5), order=<span class="string">'F'</span>)    <span class="comment"># Fortran</span></div></pre></td></tr></table></figure>
-<p>#合并操作</p>
-<p>当计算中涉及合并矩阵，不同形式的矩阵创建方式会影响时间。因为在 Numpy 中的矩阵合并等，都是发生在一维空间里，不是我们想象的二维空间中!</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">a = np.zeros((200, 200), order=<span class="string">'C'</span>)</div><div class="line">b = np.zeros((200, 200), order=<span class="string">'F'</span>)</div><div class="line">N = 9999</div><div class="line"></div><div class="line">def f1(a):</div><div class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(N):</div><div class="line">        np.concatenate((a, a), axis=0)</div><div class="line"></div><div class="line">def f2(b):</div><div class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(N):</div><div class="line">        np.concatenate((b, b), axis=0)</div><div class="line"></div><div class="line">t0 = time.time()</div><div class="line">f1(a)</div><div class="line">t1 = time.time()</div><div class="line">f2(b)</div><div class="line">t2 = time.time()</div><div class="line"></div><div class="line"><span class="built_in">print</span>((t1-t0)/N)     <span class="comment"># 2.8277459246168757e-05</span></div><div class="line"><span class="built_in">print</span>((t2-t1)/N)     <span class="comment"># 2.8879836340262445e-05</span></div></pre></td></tr></table></figure>
-<p>从时间上看，相差不是很明显，这与计算机的配置有关，本人计算机配置为：</p>
-<p><img src="http://i.imgur.com/WwunczA.png" alt=""></p>
-<p>在另一台比较旧的电脑上测试同样的数据，所需时间为：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">print</span>((t1-t0)/N)     <span class="comment"># 2.1623800439660055e-03</span></div><div class="line"><span class="built_in">print</span>((t2-t1)/N)     <span class="comment"># 3.7443810003330046e-03</span></div></pre></td></tr></table></figure>
-<p>旧电脑配置为：</p>
-<p><img src="http://i.imgur.com/7dd4z05.png" alt=""></p>
-<p>可见时间效率上相差还是比较明显的。row 为主的存储方式，如果在 row 的方向上合并矩阵，将会更快。根据 C 语言的存储结构，完成合并操作，在 1D array 中，直接再加一个 row 放在 1D array， 所以在上面的测试中， f1 速度要更快。 但是在以 column 为主的系统中，往 1D array 后面加 row 的规则变复杂了，消耗的时间也变长。如果以 axis=1 的方式合并，”F” 方式的 f2 将会比 “C” 方式的 f1 更好。</p>
-<p>有时候犯懒会直接使用 <code>np.stack</code> 来代替 <code>np.concatenate</code>， 因为这样可以少写一点代码，不过使用上面的形式，通过上面的测试发现为了速度，推荐还是尽量使用 <code>np.concatenate</code>，所以在做操作前看自己要在哪个 axis 上的操作多，然后再创建合适于自己的矩阵形式 (“C-type”/“Fortran”)。</p>
-<p>#copy慢 view快</p>
-<p>在 Numpy 中，<code>copy</code> 和 <code>view. copy</code> 顾名思义，会将数据 <code>copy</code> 出来存放在内存中另一个地方，而 <code>view</code> 则是不 <code>copy</code> 数据，直接取源数据的索引部分。下图来自 <a href="https://www.dataquest.io/blog/settingwithcopywarning/" target="_blank" rel="external">Understanding SettingwithCopyWarning in pandas</a>。</p>
-<p><img src="http://i.imgur.com/ITsbq7r.png" alt=""></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">a = np.arange(1, 7).reshape((3,2))</div><div class="line">a_view = a[:2]</div><div class="line">a_copy = a[:2].copy()</div><div class="line"></div><div class="line">a_copy[1,1] = 0</div><div class="line"><span class="built_in">print</span>(a)</div><div class="line"></div><div class="line">a_view[1,1] = 0</div><div class="line"><span class="built_in">print</span>(a)</div></pre></td></tr></table></figure>
-<p>a_view 的东西全部都是 a 的东西，动 a_view 的任何地方，a 都会被动到，因为他们在内存中的位置是一模一样的，本质上就是自己，而 a_copy 则是将 a copy 了一份，然后把 a_copy 放在内存中的另外的地方，这样改变 a_copy，a 是不会被改变的。</p>
-<p>#矩阵展平</p>
-<p>有时候要把一个矩阵展平, 用到 <code>np.flatten()</code> 或者 <code>np.ravel()</code>， ravel 返回的是一个 view （如果用 ravel，需要 copy 的时候才会被 copy ，我想这个时候可能是把 ravel 里面 order 转换的时候，如 ‘C-type’ -&gt; ‘Fortran’）， 而 flatten 返回的总是一个 copy，所以相比于 flatten， ravel 速度更快。</p>
-<p>#选择数据</p>
-<p>选择数据的时候，常会用到 view 或者 copy 的形式，如果能用到 view 的，尽量用 view，避免 copy 数据。</p>
-<h2 id="使用-np-take-替代用-index-选数据的方法"><a href="#使用-np-take-替代用-index-选数据的方法" class="headerlink" title="使用 np.take(), 替代用 index 选数据的方法"></a>使用 <code>np.take()</code>, 替代用 index 选数据的方法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">a = np.random.rand(1000000, 10)</div><div class="line">N = 99</div><div class="line">indices = np.random.randint(0, 1000000, size=10000)</div><div class="line"></div><div class="line">def f1(a):</div><div class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(N):</div><div class="line">        _ = np.take(a, indices, axis=0)</div><div class="line"></div><div class="line">def f2(b):</div><div class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(N):</div><div class="line">        _ = b[indices]</div></pre></td></tr></table></figure>
-<h2 id="使用-np-compress-替代用-mask-选数据的方法"><a href="#使用-np-compress-替代用-mask-选数据的方法" class="headerlink" title="使用 np.compress(), 替代用 mask 选数据的方法"></a>使用 <code>np.compress()</code>, 替代用 mask 选数据的方法</h2><p><code>a_copy2 = a[[True, True], [False, True]]</code> 这种就是用 TRUE， FALSE 来选择数据的</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mask = a[:, 0] &lt; 0.5</div><div class="line">def f1(a):</div><div class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(N):</div><div class="line">        _ = np.compress(mask, a, axis=0)</div><div class="line"></div><div class="line">def f2(b):</div><div class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(N):</div><div class="line">        _ = b[mask]</div></pre></td></tr></table></figure>
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/22/关于Numpy速度的一些思考/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
